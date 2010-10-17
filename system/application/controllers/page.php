@@ -6,6 +6,7 @@ class Page extends Controller {
     parent::__construct();
     $this->load->library('layout');
     $this->load->helper('url');
+    $this->load->helper('form');
   }
 
   function index() {

@@ -7,6 +7,7 @@ class Story extends Controller {
     $this->load->model('Story_model', '', TRUE);
     $this->load->library('layout');
     $this->load->helper('url');
+    $this->load->helper('form');
   }
 
   function index() {
@@ -18,5 +19,12 @@ class Story extends Controller {
     $data['story'] = $this->Story_model->load($id);
     $this->layout->setLayout('story_layouts/' . $data['story']->layout);
     $this->layout->view('story', $data);
+  }
+
+  function search() {
+    parse_str(array_pop(explode('?', $_SERVER['REQUEST_URI'], 2)), $_GET);
+    $data['search'] = htmlspecialchars($_GET['q']);
+    $data['stories'] = $this->Story_model->search(mysql_real_escape_string($_GET['q']));
+    $this->layout->view('story_search', $data);
   }
 }

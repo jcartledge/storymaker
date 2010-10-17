@@ -26,4 +26,6 @@
       <?php echo $this->load->view('story_list', array('stories' => $random_stories)); ?>
     </div>
 
+    <?php echo $this->load->view('story_search_form'); ?>
+
     <a href="/story">All stories</a>

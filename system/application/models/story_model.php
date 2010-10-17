@@ -55,4 +55,11 @@ class Story_model extends Model {
     $this->db->order_by('id');
     return $this->db->get()->result();
   }
+
+  function search($q) {
+    $this->begin_basic_list_query();
+    $this->db->like('title', $q);
+    $this->db->or_like('description', $q);
+    return $this->db->get()->result();
+  }
 }
