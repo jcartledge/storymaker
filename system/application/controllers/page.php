@@ -7,9 +7,9 @@ class Page extends Controller {
     $this->load->library('layout');
   }
 
-	function index() {
-		$this->layout->view('home_page');
-	}
+  function index() {
+    $this->layout->view('home_page');
+  }
 
   function about() {
     $this->layout->view('about_page');
