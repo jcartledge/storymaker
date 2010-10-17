@@ -13,19 +13,19 @@
 
 <div class="latest-stories">
   <h3>Latest stories</h3>
-  <?php echo $this->load->view('story_list', array('stories' => $latest_stories)); ?>
+  <?php echo $this->load->view('story/list', array('stories' => $latest_stories)); ?>
 </div>
 
 <div class="popular-stories">
   <h3>Popular stories</h3>
-  <?php echo $this->load->view('story_list', array('stories' => $popular_stories)); ?>
+  <?php echo $this->load->view('story/list', array('stories' => $popular_stories)); ?>
 </div>
 
 <div class="random-stories">
   <h3>Random stories</h3>
-  <?php echo $this->load->view('story_list', array('stories' => $random_stories)); ?>
+  <?php echo $this->load->view('story/list', array('stories' => $random_stories)); ?>
 </div>
 
-<?php echo $this->load->view('story_search_form'); ?>
+<?php echo $this->load->view('story/search_form'); ?>
 
 <a href="/story">All stories</a>

@@ -33,6 +33,7 @@ class Story_model extends Model {
   }
 
   function load($id) {
+    //@TODO: increment viewed count for this story
     $this->db->from('stories');
     $this->db->where(array('id' => $id));
     $story = array_pop($this->db->get()->result());
