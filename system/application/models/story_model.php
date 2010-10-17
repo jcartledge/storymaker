@@ -3,10 +3,33 @@
 class Story_model extends Model {
 
   function list_all() {
+    $this->begin_basic_list_query();
+    return $this->db->get()->result();
+  }
+
+  function list_latest($num = 3) {
+    $this->begin_basic_list_query($num);
+    $this->db->order_by('id DESC');
+    return $this->db->get()->result();
+  }
+
+  function list_popular($num = 3) {
+    $this->begin_basic_list_query($num);
+    $this->db->order_by('viewed DESC');
+    return $this->db->get()->result();
+  }
+
+  function list_random($num = 3) {
+    $this->begin_basic_list_query($num);
+    $this->db->order_by('', 'RANDOM');
+    return $this->db->get()->result();
+  }
+
+  private function begin_basic_list_query($num = NULL) {
     $this->db->select('stories.*, users.username');
     $this->db->from('stories');
     $this->db->join('users', 'users.id = stories.user_id');
-    return $this->db->get()->result();
+    if($num) $this->db->limit($num);
   }
 
   function load($id) {

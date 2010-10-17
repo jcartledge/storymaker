@@ -10,3 +10,20 @@
     <p>If you would like to add a story, you can become a member by emailing me here: stefan.schutt (at) vu.edu.au</p>
     <p>If you are a member you can <a href="/auth/login">log in here</a></p>
     <p><strong>NOTE: THIS SITE IS UNFINISHED AND IN DEVELOPMENT. STAY TUNED - IT'S BEING FIDDLED WITH AND TUNED UP AS YOU READ. (JUNE 2007)</strong></p>
+
+    <div class="latest-stories">
+      <h3>Latest stories</h3>
+      <?php echo $this->load->view('story_list', array('stories' => $latest_stories)); ?>
+    </div>
+
+    <div class="popular-stories">
+      <h3>Popular stories</h3>
+      <?php echo $this->load->view('story_list', array('stories' => $popular_stories)); ?>
+    </div>
+
+    <div class="random-stories">
+      <h3>Random stories</h3>
+      <?php echo $this->load->view('story_list', array('stories' => $random_stories)); ?>
+    </div>
+
+    <a href="/story">All stories</a>

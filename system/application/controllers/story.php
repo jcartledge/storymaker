@@ -11,12 +11,12 @@ class Story extends Controller {
 
   function index() {
     $data['stories'] = $this->Story_model->list_all();
-    $this->layout->view('stories_all', $data);
+    $this->layout->view('story_list', $data);
   }
 
   function view($id) {
     $data['story'] = $this->Story_model->load($id);
-    $this->layout->setLayout('layout_' . $data['story']->layout);
+    $this->layout->setLayout('story_layouts/' . $data['story']->layout);
     $this->layout->view('story', $data);
   }
 }
