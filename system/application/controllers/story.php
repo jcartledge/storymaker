@@ -9,6 +9,8 @@ class Story extends Controller {
     $this->layout->setLayout('layouts/main');
     $this->load->helper('url');
     $this->load->helper('form');
+    $this->load->helper('attachment');
+    $this->load->helper('thumbnail');
   }
 
   function index() {

@@ -3,29 +3,29 @@
 class Story_model extends Model {
 
   function list_all() {
-    $this->begin_basic_list_query();
+    $this->begin_basic_stories_query();
     return $this->db->get()->result();
   }
 
   function list_latest($num = 3) {
-    $this->begin_basic_list_query($num);
+    $this->begin_basic_stories_query($num);
     $this->db->order_by('id DESC');
     return $this->db->get()->result();
   }
 
   function list_popular($num = 3) {
-    $this->begin_basic_list_query($num);
+    $this->begin_basic_stories_query($num);
     $this->db->order_by('viewed DESC');
     return $this->db->get()->result();
   }
 
   function list_random($num = 3) {
-    $this->begin_basic_list_query($num);
+    $this->begin_basic_stories_query($num);
     $this->db->order_by('', 'RANDOM');
     return $this->db->get()->result();
   }
 
-  private function begin_basic_list_query($num = NULL) {
+  private function begin_basic_stories_query($num = NULL) {
     $this->db->select('stories.*, users.username');
     $this->db->from('stories');
     $this->db->join('users', 'users.id = stories.user_id');
@@ -34,8 +34,8 @@ class Story_model extends Model {
 
   function load($id, $page = 1) {
     //@TODO: increment viewed count for this story
-    $this->db->from('stories');
-    $this->db->where(array('id' => $id));
+    $this->begin_basic_stories_query();
+    $this->db->where(array('stories.id' => $id));
     $story = array_pop($this->db->get()->result());
     $story->page = $page;
     $story->pages = $this->count_pages($id, $story->items_per_page);
@@ -50,14 +50,16 @@ class Story_model extends Model {
   }
 
   function search($q) {
-    $this->begin_basic_list_query();
+    $this->begin_basic_stories_query();
     $this->db->like('title', $q);
     $this->db->or_like('description', $q);
     return $this->db->get()->result();
   }
 
   private function begin_basic_items_query($id) {
+    $this->db->select('items.*, users.username');
     $this->db->from('items');
+    $this->db->join('users', 'users.id = items.user_id');
     $this->db->join('items_stories', 'items.id = items_stories.item_id');
     $this->db->where(array('items_stories.story_id' => $id));
     $this->db->order_by('position');
