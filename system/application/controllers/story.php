@@ -16,8 +16,8 @@ class Story extends Controller {
     $this->layout->view('story/list', $data);
   }
 
-  function view($id) {
-    $data['story'] = $this->Story_model->load($id);
+  function view($id, $page = 1) {
+    $data['story'] = $this->Story_model->load($id, $page);
     $this->layout->setLayout('layouts/story');
     $this->layout->view('story/view', $data);
   }
