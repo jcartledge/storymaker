@@ -54,5 +54,8 @@ function attachment_view($attachment, $description, $mimetype) {
     $view = "attachment/download";
   }
   $ci = get_instance();
-  return $ci->load->view($view, array('attachment' => $attachment, 'description' => $description));
+  return $ci->load->view($view, array(
+    'attachment' => $attachment,
+    'description' => $description,
+    'mimetype' => $mimetype));
 }
