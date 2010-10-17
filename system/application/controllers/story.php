@@ -5,7 +5,7 @@ class Story extends Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('Story_model', '', TRUE);
-    $this->load->library('layout');
+    $this->load->library('layout', 'layouts/main');
     $this->load->helper('url');
     $this->load->helper('form');
   }
@@ -17,7 +17,7 @@ class Story extends Controller {
 
   function view($id) {
     $data['story'] = $this->Story_model->load($id);
-    $this->layout->setLayout('story_layout');
+    $this->layout->setLayout('layouts/story');
     $this->layout->view('story/view', $data);
   }
 

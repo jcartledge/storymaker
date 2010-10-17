@@ -4,7 +4,7 @@ class Page extends Controller {
 
   function __construct() {
     parent::__construct();
-    $this->load->library('layout');
+    $this->load->library('layout', 'layouts/main');
     $this->load->helper('url');
     $this->load->helper('form');
   }
