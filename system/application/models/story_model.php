@@ -37,6 +37,7 @@ class Story_model extends Model {
     $this->begin_basic_stories_query();
     $this->db->where(array('stories.id' => $id));
     $story = array_pop($this->db->get()->result());
+    if($story->layout == 'default') $story->layout = 'narrative';
     $story->page = $page;
     $story->pages = $this->count_pages($id, $story->items_per_page);
     $story->items = $this->load_items($id, $page, $story->items_per_page);
