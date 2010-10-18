@@ -1,1 +1,2 @@
 p, dl, .item-title { display: none; }
+.item, .pager.bottom { display: none; }

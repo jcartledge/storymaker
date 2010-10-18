@@ -8,4 +8,6 @@ $(function(){
     el.css({'position': 'absolute', 'top': t, 'left': l});
     this.src = this.parentNode.href;
   }).addClass('instant');
+  $('.item-attachment').draggable({'stack': '.item-attachment'});
+  $('.item-attachment a').click(function() { return false; });
 });
