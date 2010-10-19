@@ -23,7 +23,7 @@ class Page extends Controller {
   }
 
   function disclaimer() {
-    $this->layout->view('page/disclaimer');
+    $this->layout->view('pages/disclaimer');
   }
 
   function privacy() {
