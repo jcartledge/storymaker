@@ -10,7 +10,9 @@
 
     <p><?php echo $item->description; ?></p>
 
-    <?php echo nl2br($item->content); ?>
+    <div class="story-body">
+      <?php echo nl2br($item->content); ?>
+    </div>
 
     <?php if($item->year) { ?><dl class="item-year">
       <dt>Year: </dt>
