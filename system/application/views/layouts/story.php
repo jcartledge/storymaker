@@ -3,6 +3,7 @@
     <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
     <script src="/js/jquery-ui-1.8.5.custom.min.js"></script>
     <script src="/js/jquery.lightbox-0.5.pack.js"></script>
+    <script src="/js/jquery.cycle.lite.min.js"></script>
     <script src="/js/instant.js"></script>
     <script src="/js/layouts/<?php echo $story->layout; ?>.js"></script>
     <link rel="stylesheet" href="/css/jquery.lightbox-0.5.css" type="text/css">
