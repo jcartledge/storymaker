@@ -60,7 +60,14 @@ class Story_model extends Model {
   function save_comment($id, $comment) {
     $comment['story_id'] = $id;
     $comment['created_at'] = date('Y-m-d H:i:s');
-    $this->db->insert('comments', $comment);
+    $akismet_config = array(
+      'blog_url' => 'http://www.smallhistories.com/',
+      'api_key' => 'b2f37326d1f0',
+      'comment' => $comment
+    );
+    $this->load->library('akismet');
+    $this->akismet->init($akismet_config);
+    if(!$this->akismet->is_spam()) $this->db->insert('comments', $comment);
   }
 
   function search($q) {
