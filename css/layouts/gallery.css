@@ -1,5 +1,5 @@
 html, body, #content { width: 20000; }
-
+body.gallery-layout { background-attachment: fixed; }
 .story { padding-left: 1em; height: 550px; width: auto; }
 .story-title { width: 100%; text-align: left; }
 .story-description { width: 100%; text-align: left; }
@@ -16,3 +16,5 @@ html, body, #content { width: 20000; }
 .item-title { text-align: left; }
 .item-metadata dt { float: left; clear: left; }
 .pager.top { text-align: left; }
+
+.gallery-layout .search-form { position: fixed; }

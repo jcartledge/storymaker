@@ -15,10 +15,11 @@
   </head>
   <body class="story-page <?php echo $story->layout; ?>-layout">
     <h1><a href="/">Small Histories</a></h1>
+    <?php echo $this->load->view('story/search_form'); ?>
     <div id="content">
       <?php echo $content_for_layout; ?>
-      <?php echo $this->load->view('footer'); ?>
     </div>
+    <?php echo $this->load->view('footer'); ?>
     <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
     <script type="text/javascript">
       _uacct = "UA-2295761-1";

@@ -25,6 +25,19 @@ class Story_model extends Model {
     return $this->db->get()->result();
   }
 
+  function homepage_stories () {
+    return $this->db->query('SELECT 
+      items_stories.story_id,
+      stories.title,
+      items.attachment,
+      items.description
+      FROM items, items_stories, stories
+      WHERE mimetype="image/jpeg" 
+      and items_stories.item_id = items.id
+      and items_stories.story_id = stories.id
+      order by rand() limit 10')->result();
+  }
+
   private function begin_basic_stories_query($num = NULL) {
     $this->db->select('stories.*, users.username');
     $this->db->from('stories');

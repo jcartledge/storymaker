@@ -12,9 +12,7 @@ class Page extends Controller {
 
   function index() {
     $this->load->model('Story_model', '', TRUE);
-    $data['latest_stories'] = $this->Story_model->list_latest();
-    $data['popular_stories'] = $this->Story_model->list_popular();
-    $data['random_stories'] = $this->Story_model->list_random();
+    $data['homepage_stories'] = $this->Story_model->homepage_stories();
     $this->layout->view('pages/home', $data);
   }
 

@@ -1,4 +1,4 @@
-<?php echo form_open('/story/search', array('method' => 'get')); ?>
-  Search: <?php echo form_input('q', isset($search) ? $search : ''); ?>
-  <?php echo form_submit('search', 'Go'); ?>
-<?php echo form_close(); ?>
+<form class="search-form" action="/story/search" method = "get">
+  Search: <input type="search" value="<?php echo isset($search) ? $search : ''; ?>" name="q">
+  <input type="submit" value="Go">
+</form>

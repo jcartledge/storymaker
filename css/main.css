@@ -1,1 +1,4 @@
-body { background: url('/images/SHorangeheader.gif') top left no-repeat; }
+body {
+  position: relative;
+  background: url('/images/SHorangeheader.gif') top left no-repeat;
+}
