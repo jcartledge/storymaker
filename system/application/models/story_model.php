@@ -57,6 +57,12 @@ class Story_model extends Model {
     return $this->db->get()->result();
   }
 
+  function save_comment($id, $comment) {
+    $comment['story_id'] = $id;
+    $comment['created_at'] = date('Y-m-d H:i:s');
+    $this->db->insert('comments', $comment);
+  }
+
   function search($q) {
     $this->begin_basic_stories_query();
     $this->db->like('title', $q);

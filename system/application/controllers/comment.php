@@ -13,12 +13,18 @@ class Comment extends Controller {
 
   function story($story_id) {
     $data['comments'] = $this->Story_model->load_comments($story_id);
+    $data['story_id'] = $story_id;
     $this->layout->view('comment/story', $data);
   }
 
-  function search() {
-    $data['search'] = htmlspecialchars($_GET['q']);
-    $data['stories'] = $this->Story_model->search(mysql_real_escape_string($_GET['q']));
-    $this->layout->view('story/search', $data);
+  function post($story_id) {
+
+    $comment = array(
+      'author'  => $this->input->post('commenter'),
+      'title'   => $this->input->post('title'),
+      'comment' => $this->input->post('comment')
+    );
+    $this->Story_model->save_comment($story_id, $comment);
+    $this->story($story_id);
   }
 }
