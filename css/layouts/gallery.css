@@ -1,4 +1,4 @@
-html, body { width: 20000; }
+html, body, #content { width: 20000; }
 
 .story { padding-left: 1em; height: 550px; width: auto; }
 .story-title { width: 100%; text-align: left; }

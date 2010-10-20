@@ -50,6 +50,13 @@ class Story_model extends Model {
     return $this->db->get()->result();
   }
 
+  function load_comments($id) {
+    $this->db->from('comments');
+    $this->db->where(array('story_id' => $id));
+    $this->db->order_by('created_at');
+    return $this->db->get()->result();
+  }
+
   function search($q) {
     $this->begin_basic_stories_query();
     $this->db->like('title', $q);

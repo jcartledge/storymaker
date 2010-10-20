@@ -1,0 +1,4 @@
+body { background: url('/images/SHorangeheader.gif') top left no-repeat; }
+dl, dt, dd { float: left; font-size: small; }
+dd { padding-left: 0.5em; margin: 0; margin-right: 2em; }
+.pager { clear: left; }
