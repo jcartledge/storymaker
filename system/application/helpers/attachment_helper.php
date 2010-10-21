@@ -3,6 +3,7 @@
 function attachment_type($mimetype) {
   $types = array(
     'object video'  => array('video/mpeg', 'video/avi', 'video/x-msvideo', 'video/quicktime'), 
+    'youtube video' => array('video/youtube'),
     'mp3 audio'     => array('audio/mp3', 'audio/mpeg'),
     'object audio'  => array('audio/aiff', 'audio/wav'),
     'image'         => array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'),
@@ -18,6 +19,7 @@ function attachment_icon($mimetype) {
   $url = '/images/icons';
   switch(attachment_type($mimetype)) {
   case 'object video':
+  case 'youtube video':
     return "{$url}/film.png";
   case 'mp3 audio':
   case 'object audio':
@@ -36,6 +38,9 @@ function attachment_view($attachment, $description, $mimetype) {
   case 'object video':
   case 'object audio':
     $view = "attachment/object";
+    break;
+  case 'youtube video':
+    $view = "attachment/youtube";
     break;
   case 'mp3 audio':
     $view = "attachment/mp3";
