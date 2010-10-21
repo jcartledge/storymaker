@@ -410,6 +410,7 @@ function addInstant() {
 			canvas.style.visibility = 'visible';
 		}
 	}
+  if(instant_done) instant_done();
 }
 
 if(window.addEventListener) window.addEventListener("load",addInstant,false);

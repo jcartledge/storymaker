@@ -1,6 +1,6 @@
 html { height: 99; }
 body { min-height: 100%; }
-#content { width: 700px; margin-left: 100px; padding-bottom: 50px; }
+#content { width: 700px; margin-left: 100px; padding-bottom: 50px; margin-top: -10px;}
 
 h1 { margin-left: -1000px; width: 1200px; }
 h1 a { display: block; width: 100%; }
@@ -19,7 +19,7 @@ h1 a { display: block; width: 100%; }
 
 .search-form {
   position: absolute;
-  top: 20px;
+  top: 50px;
   left: 0px;
   width: 800px;
   text-align: right;

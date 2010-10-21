@@ -12,19 +12,21 @@ body.gallery-layout { background-attachment: fixed; }
   max-width: 400px;
   .width: 270px;
 }
-
+h3.story-description { width: 700px; }
 .item-title { text-align: left; }
 .item-metadata dt { float: left; clear: left; }
 
-.pager-bottom { display: none; }
-h1, .pager, .gallery-layout .search-form, .story-owner, .story-title, .story-description, .footer { position: fixed; }
+h1, .gallery-layout .search-form, .story-owner, .story-title, .story-description, .footer { position: fixed; }
 h1 { top: 0; }
-.story-owner { top: 50px; }
 .story-title { top: 80px; }
-.story-description { top: 120px; }
-.story-items { padding-top : 200px; }
+.story-owner { top: 115px; }
+.story-description { top: 150px; }
+.story-items { padding-top : 210px; }
 
 .comments-link { position: fixed; left: 100px; top: 200px; }
 .comments-container { position: fixed; left: 100px; top: 250px; }
-.pager { left:100px; top: 170px; }
 
+.comments-link { display: none; }
+
+.pager.top { position: fixed; top: 50px; left: 100px; }
+.pager.bottom { display: none; }
