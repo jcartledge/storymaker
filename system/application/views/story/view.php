@@ -1,4 +1,4 @@
-<div class="story">
+<div class="story" id="<?php echo $story->id; ?>">
   <h2 class="story-title"><?php echo $story->title; ?></h2>
   <p class="story-owner"> Author: <?php echo $story->username; ?></p> 
   <h3 class="story-description"><?php echo $story->description; ?></h3>

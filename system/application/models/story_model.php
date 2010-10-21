@@ -97,8 +97,14 @@ class Story_model extends Model {
     return $this->db->get()->result();
   }
 
+  function update_item_position($data) {
+    $this->db->where('item_id = ' . $data['item_id']);
+    $this->db->where('story_id = ' . $data['story_id']);
+    $this->db->update('items_stories', $data);
+  }
+
   private function begin_basic_items_query($id) {
-    $this->db->select('items.*, users.username');
+    $this->db->select('items.*, items_stories.pos_x, items_stories.pos_y, users.username');
     $this->db->from('items');
     $this->db->join('users', 'users.id = items.user_id');
     $this->db->join('items_stories', 'items.id = items_stories.item_id');
