@@ -21,12 +21,7 @@ h1 { top: 0; }
 .story-title { top: 80px; }
 .story-owner { top: 115px; }
 .story-description { top: 150px; }
-.story-items { padding-top : 210px; }
-
-.comments-link { position: fixed; left: 100px; top: 200px; }
-.comments-container { position: fixed; left: 100px; top: 250px; }
-
-.comments-link { display: none; }
+.story-items { padding-top : 230px; }
 
 .pager.top { position: fixed; top: 50px; left: 100px; }
 .pager.bottom { display: none; }

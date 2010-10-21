@@ -1,4 +1,5 @@
 <form class="comment-form" action="/comment/post/<?php echo $story_id; ?>" method="post">
+  <h3>Add a comment</h3>
   <p>
     <label for="commenter">Your name:</label>
     <input name="commenter">

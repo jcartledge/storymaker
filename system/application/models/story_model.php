@@ -50,7 +50,6 @@ class Story_model extends Model {
     $this->begin_basic_stories_query();
     $this->db->where(array('stories.id' => $id));
     $story = array_pop($this->db->get()->result());
-    $story->num_comments = $this->count_comments($id);
     if($story->layout == 'default') $story->layout = 'narrative';
     if($story->layout == 'slideshow' || $story->layout == 'shoebox') {
       $story->page = 0;
@@ -69,12 +68,6 @@ class Story_model extends Model {
     if($where) $this->db->where($where);
     if($page || $items_per_page) $this->db->limit($items_per_page, $items_per_page * ($page - 1));
     return $this->db->get()->result();
-  }
-
-  function count_comments($id) {
-    $this->db->from('comments');
-    $this->db->where(array('story_id' => $id));
-    return $this->db->count_all_results();
   }
 
   function load_comments($id) {

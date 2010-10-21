@@ -4,6 +4,7 @@
     <script src="/js/jquery-ui-1.8.5.custom.min.js"></script>
     <script src="/js/jquery.lightbox-0.5.pack.js"></script>
     <script src="/js/jquery.cycle.lite.min.js"></script>
+    <script src="/js/jquery.center.js"></script>
     <script src="/js/instant.js"></script>
     <script src="/js/story.js"></script>
     <script src="/js/layouts/<?php echo $story->layout; ?>.js"></script>

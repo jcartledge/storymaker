@@ -1,4 +1,11 @@
 body { background: url('/images/SHorangeheader.gif') top left no-repeat; }
-dl, dt, dd { float: left; font-size: small; }
+.story-item dt, .story-item dd { float: left; font-size: small; }
 dd { padding-left: 0.5em; margin: 0; margin-right: 2em; }
 .pager { clear: left; }
+.comment-form { clear: left; padding: 1em; }
+.comment dt, .comment dd { padding-left: 1em; }
+.comment p { clear: left; padding: 1em; }
+.comment-form label { display: block; }
+.comment-form input { width: 350px; }
+.comment-form textarea { width: 350px; height: 180px; }
+.comment-form input[type=submit] { width: auto; }
