@@ -2,3 +2,5 @@ body {
   position: relative;
   background: url('/images/SHorangeheader.gif') top left no-repeat;
 }
+
+.homepage-stories img { display:none; }

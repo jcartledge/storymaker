@@ -6,13 +6,15 @@ function thumbnail_url($image_url) {
   if(!is_dir($thumb_dir)) mkdir($thumb_dir, 0777, TRUE);
   $thumb_filespec = $thumb_dir . DIRECTORY_SEPARATOR . basename($image_url);
   if(!file_exists($thumb_filespec)) {
+    list($w, $h) = getimagesize($filespec);
     $ci = get_instance();
     $ci->load->library('image_lib');
     $config['source_image'] = $filespec;
     $config['new_image'] = $thumb_filespec;
-    $config['width'] = 200;
-    $config['height'] = 200;
+    $config['width'] = 300;
+    $config['height'] = 300;
     $config['maintain_ratio'] = TRUE;
+    $config['master_dim'] = ($w > $h) ? 'width' : 'height';
     $ci->image_lib->initialize($config);
     $ci->image_lib->resize();
   }

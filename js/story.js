@@ -1,6 +1,9 @@
 $(function() {
-  $('.comments-link').after('<div class="comments-container" style="display:none;"/>').click(function() {
+  $('.comments-link').prepend('Show ').after('<div class="comments-container" style="display:none;"/>').click(function() {
     $('.comments-container').toggle('slide');
+    var l = $('.comments-link').html();
+    l = (l.match(/^Show/)) ? l.replace(/^Show/, 'Hide') : l.replace(/^Hide/, 'Show');
+    $('.comments-link').html(l);
     return false;
   });
   $('.comments-container').load($('.comments-link')[0].href + ' .comments');

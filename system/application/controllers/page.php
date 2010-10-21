@@ -11,6 +11,7 @@ class Page extends Controller {
   }
 
   function index() {
+    $this->load->helper('thumbnail');
     $this->load->model('Story_model', '', TRUE);
     $data['homepage_stories'] = $this->Story_model->homepage_stories();
     $this->layout->view('pages/home', $data);

@@ -5,7 +5,7 @@
 <div class="homepage-stories">
   <?php foreach($homepage_stories as $homepage_story) { ?><div class="homepage-story">
     <a href="/story/view/<?php echo $homepage_story->story_id; ?>">
-      <img src="<?php echo $homepage_story->attachment; ?>">
+      <img src="<?php echo thumbnail_url($homepage_story->attachment); ?>">
       <p><?php echo $homepage_story->title . ' - ' . $homepage_story->description; ?></p>
     </a>
   </div><?php } ?>

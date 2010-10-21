@@ -7,5 +7,5 @@
     <?php foreach($story->items as $item) echo $this->load->view('item/view', array('item' => $item, 'page' => $story->page)); ?>
   </div>
   <?php echo $this->load->view('story/pager', array('story' => $story, 'class' => 'bottom')); ?>
-  <a class="comments-link" href="/comment/story/<?php echo $story->id; ?>">Comments</a>
+<a class="comments-link" href="/comment/story/<?php echo $story->id; ?>">Comments (<?php echo $story->num_comments; ?>)</a>
 </div>

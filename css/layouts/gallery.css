@@ -1,20 +1,30 @@
 html, body, #content { width: 20000; }
 body.gallery-layout { background-attachment: fixed; }
-.story { padding-left: 1em; height: 550px; width: auto; }
+.story { height: 550px; width: auto; }
 .story-title { width: 100%; text-align: left; }
 .story-description { width: 100%; text-align: left; }
 .story-owner { width: 100%; text-align: left; }
 
 .story-item {
-  text-align: center;
   float: left;
-  min-width: 270px;
+  margin-right: 3em;
+  min-width: 330px;
   max-width: 400px;
   .width: 270px;
 }
 
 .item-title { text-align: left; }
 .item-metadata dt { float: left; clear: left; }
-.pager.top { text-align: left; }
 
-.gallery-layout .search-form { position: fixed; }
+.pager-bottom { display: none; }
+h1, .pager, .gallery-layout .search-form, .story-owner, .story-title, .story-description, .footer { position: fixed; }
+h1 { top: 0; }
+.story-owner { top: 50px; }
+.story-title { top: 80px; }
+.story-description { top: 120px; }
+.story-items { padding-top : 200px; }
+
+.comments-link { position: fixed; left: 100px; top: 200px; }
+.comments-container { position: fixed; left: 100px; top: 250px; }
+.pager { left:100px; top: 170px; }
+

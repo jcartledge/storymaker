@@ -50,17 +50,31 @@ class Story_model extends Model {
     $this->begin_basic_stories_query();
     $this->db->where(array('stories.id' => $id));
     $story = array_pop($this->db->get()->result());
+    $story->num_comments = $this->count_comments($id);
     if($story->layout == 'default') $story->layout = 'narrative';
-    $story->page = $page;
-    $story->pages = $this->count_pages($id, $story->items_per_page);
-    $story->items = $this->load_items($id, $page, $story->items_per_page);
+    if($story->layout == 'slideshow' || $story->layout == 'shoebox') {
+      $story->page = 0;
+      $story->pages = 0;
+    } else {
+      $story->page = $page;
+      $story->pages = $this->count_pages($id, $story->items_per_page);
+    }
+    $where = ($story->layout == 'gallery' || $story->layout == 'shoebox') ? 'mimetype LIKE "image/%"' : NULL;
+    $story->items = $this->load_items($id, $page, $story->items_per_page, $where);
     return $story;
   }
 
-  function load_items($id, $page = 1, $items_per_page = 10) {
+  function load_items($id, $page = 1, $items_per_page = 10, $where = NULL) {
     $this->begin_basic_items_query($id);
-    $this->db->limit($items_per_page, $items_per_page * ($page - 1));
+    if($where) $this->db->where($where);
+    if($page || $items_per_page) $this->db->limit($items_per_page, $items_per_page * ($page - 1));
     return $this->db->get()->result();
+  }
+
+  function count_comments($id) {
+    $this->db->from('comments');
+    $this->db->where(array('story_id' => $id));
+    return $this->db->count_all_results();
   }
 
   function load_comments($id) {
