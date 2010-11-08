@@ -12,14 +12,17 @@ class Story extends Controller {
     $this->load->helper('form');
     $this->load->helper('attachment');
     $this->load->helper('thumbnail');
+    $this->data['auth'] = $this->tank_auth;
   }
 
   function index() {
+    $data = $this->data;
     $data['stories'] = $this->Story_model->list_all();
     $this->layout->view('story/list', $data);
   }
 
   function view($id, $page = 1) {
+    $data = $this->data;
     $data['story'] = $this->Story_model->load($id, $page);
     $data['owner'] = ($data['story']->username == $this->tank_auth->get_username());
     $this->layout->setLayout('layouts/story');
@@ -27,6 +30,7 @@ class Story extends Controller {
   }
 
   function search() {
+    $data = $this->data;
     $data['search'] = htmlspecialchars($_GET['q']);
     $data['stories'] = $this->Story_model->search(mysql_real_escape_string($_GET['q']));
     $this->layout->view('story/search', $data);

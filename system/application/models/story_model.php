@@ -25,6 +25,12 @@ class Story_model extends Model {
     return $this->db->get()->result();
   }
 
+  function list_by_user($user_id, $num = 10) {
+    $this->begin_basic_stories_query($num);
+    $this->db->where(array('users.id' => $user_id));
+    return $this->db->get()->result();
+  }
+
   function homepage_stories () {
     return $this->db->query('SELECT 
       items_stories.story_id,

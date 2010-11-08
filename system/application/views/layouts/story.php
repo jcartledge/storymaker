@@ -19,6 +19,7 @@
     <title><?php echo isset($title) ? $title : 'Small Histories'; ?></title>
   </head>
   <body class="story-page <?php echo $story->layout; ?>-layout">
+    <?php echo $this->load->view('manage/nav'); ?>
     <h1><a href="/">Small Histories</a></h1>
     <?php echo $this->load->view('story/search_form'); ?>
     <div id="content">
