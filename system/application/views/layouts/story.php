@@ -8,6 +8,10 @@
     <script src="/js/instant.js"></script>
     <script src="/js/story.js"></script>
     <script src="/js/layouts/<?php echo $story->layout; ?>.js"></script>
+<?php if($owner){ ?>
+    <script>window.layout = "<?php echo $story->layout; ?>";</script>
+    <script src="/js/layouts/owner.js"></script>
+<?php } ?>
     <link rel="stylesheet" href="/css/global.css" type="text/css">
     <link rel="stylesheet" href="/css/story.css" type="text/css">
     <link rel="stylesheet" href="/css/jquery.lightbox-0.5.css" type="text/css">
