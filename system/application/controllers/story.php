@@ -38,6 +38,40 @@ class Story extends Controller {
       $this->output->set_status_header('401');
       redirect('');
     }
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('story-title', 'title', 'required');
+    $this->form_validation->set_rules('story-title', 'title-unique', 'callback_check_title');
+    $this->form_validation->set_message('check_title', 'There is already a story with this title - please choose another.');
+    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+    $this->form_validation->set_rules('story-description', 'description', 'required');
+    if($this->form_validation->run()) {
+      $story_id = $this->Story_model->save(array(
+        'user_id'     => $this->tank_auth->get_user_id(),
+        'title'       => $_POST['story-title'],
+        'description' => $_POST['story-description']
+      ));
+      if($story_id) redirect('/story/edit/' . $story_id);
+    }
     $this->layout->view('story/add');
+  }
+
+  function edit($id) {
+    $authorized = FALSE;
+    if($this->tank_auth->is_logged_in()) {
+      $story = $this->Story_model->load($id);
+      $authorized = ($story->user_id == $this->tank_auth->get_user_id());
+    }
+    if(!$authorized) {
+      $this->output->set_status_header('401');
+      redirect('');
+    }
+    $data['story'] = $story;
+    $this->load->model('Item_model');
+    $data['items'] = $this->Item_model->search(isset($_GET['item-search']) ? $_GET['item-search'] : '');
+    $this->layout->view('story/edit', $data);
+  }
+
+  function check_title($title) {
+    return $this->Story_model->check_title($title);
   }
 }

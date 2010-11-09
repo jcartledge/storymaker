@@ -69,6 +69,26 @@ class Story_model extends Model {
     return $story;
   }
 
+  function save($data) {
+    if(isset($data['id'])) {
+      // update
+    } else {
+      $data['created_at'] = date('Y-m-d H:i:s', time());
+      $data['viewed'] = 0;
+      $this->db->insert('stories', $data);
+      return $this->db->insert_id();
+    }
+  }
+
+  /**
+   * validates uniqueness of title
+   * @param $title
+   * @return bool validity
+   */
+  function check_title($title) {
+    return !$this->db->from('stories')->like('title', $title)->count_all_results();
+  }
+
   function load_items($id, $page = 1, $items_per_page = 10, $where = NULL) {
     $this->begin_basic_items_query($id);
     if($where) $this->db->where($where);

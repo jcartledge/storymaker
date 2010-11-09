@@ -26,7 +26,8 @@ h1 a { display: block; width: 100%; }
 }
 
 .footer { position: absolute; bottom: 10; left: 100px; }
-.search-form input { display: inline; }
+.search-form input, input[type=checkbox] { display: inline; }
 label, input, textarea { display: block; }
 .manage-nav { width: 765px; clear: both; }
 .manage-nav li { float: right; padding: 0.5em; }
+form .error { width: 250px; float: right; margin-right: 100px; }
