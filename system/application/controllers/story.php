@@ -6,23 +6,21 @@ class Story extends Controller {
     parent::__construct();
     $this->load->model('Story_model', '', TRUE);
     $this->load->library('layout');
-		$this->load->library('tank_auth');
+    $this->load->library('tank_auth');
     $this->layout->setLayout('layouts/main');
     $this->load->helper('url');
     $this->load->helper('form');
     $this->load->helper('attachment');
     $this->load->helper('thumbnail');
-    $this->data['auth'] = $this->tank_auth;
   }
 
   function index() {
-    $data = $this->data;
     $data['stories'] = $this->Story_model->list_all();
+    $data['h2'] = 'All stories';
     $this->layout->view('story/list', $data);
   }
 
   function view($id, $page = 1) {
-    $data = $this->data;
     $data['story'] = $this->Story_model->load($id, $page);
     $data['owner'] = ($data['story']->username == $this->tank_auth->get_username());
     $this->layout->setLayout('layouts/story');
@@ -30,9 +28,16 @@ class Story extends Controller {
   }
 
   function search() {
-    $data = $this->data;
     $data['search'] = htmlspecialchars($_GET['q']);
     $data['stories'] = $this->Story_model->search(mysql_real_escape_string($_GET['q']));
     $this->layout->view('story/search', $data);
+  }
+
+  function add() {
+    if(!$this->tank_auth->is_logged_in()) {
+      $this->output->set_status_header('401');
+      redirect('');
+    }
+    $this->layout->view('story/add');
   }
 }

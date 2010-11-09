@@ -16,11 +16,9 @@ class Manage extends Controller {
     $this->layout->setLayout('layouts/manage');
     $this->load->helper('attachment');
     $this->load->helper('thumbnail');
-    $this->data['auth'] = $this->tank_auth;
   }
 
   function index() {
-    $data = $this->data;
     $data['stories'] = $this->Story_model->list_by_user($this->tank_auth->get_user_id());
     $data['items'] = $this->Item_model->list_by_user($this->tank_auth->get_user_id());
     $this->layout->view('manage/index', $data);
