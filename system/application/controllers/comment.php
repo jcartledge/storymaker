@@ -6,7 +6,8 @@ class Comment extends Controller {
     parent::__construct();
     $this->load->model('Story_model', '', TRUE);
     $this->load->library('layout');
-    $this->layout->setLayout('layouts/main');
+    $this->load->library('tank_auth');
+    $this->layout->setLayout('layouts/comment');
     $this->load->helper('url');
     $this->load->helper('form');
   }
