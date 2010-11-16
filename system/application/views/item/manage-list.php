@@ -1,3 +1,4 @@
+<?php $this->load->helper('icon'); ?>
 <ul><?php foreach ($items as $item) { ?>
   <li>
     <?php echo anchor('/item/edit/' . $item->id, icon('pencil')); ?>

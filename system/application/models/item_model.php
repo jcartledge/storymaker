@@ -19,21 +19,24 @@ class Item_model extends Model {
   }
 
   private function begin_search_query($str = '', $limit = 0, $story_id = NULL) {
-    $this->begin_basic_items_query($limit);
-    if($str) $this->db->like('title', $str)->or_like('content', $str)->or_like('description', $str);
-    if($story_id) $this->exclude_story($story_id);
+    $exclude_ids = array();
+    if($story_id) {
+      $this->load->model('Story_model', '', TRUE);
+      $exclude_ids = $this->Story_model->item_ids($story_id);
+    }
+    $this->begin_basic_items_query($limit, $exclude_ids);
+    if($str) {
+      $str = $this->db->escape("%$str%");
+      $this->db->where("(title LIKE $str OR content LIKE $str OR description LIKE $str)", NULL, FALSE);
+    }
   }
 
-  private function begin_basic_items_query($limit = 0) {
+  private function begin_basic_items_query($limit = 0, $exclude_ids = array()) {
     $this->db->select('items.*');
     $this->db->from('items');
     $this->db->join('users', 'users.id = items.user_id');
+    if($exclude_ids) $this->db->where_not_in('items.id', $exclude_ids);
     if($limit) $this->db->limit($limit);
-  }
-
-  private function exclude_story($story_id) {
-    $this->db->join('items_stories', 'items_stories.item_id = items.id');
-    $this->db->where('items_stories.story_id !=', $story_id);
   }
 
 }

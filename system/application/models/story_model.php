@@ -52,7 +52,6 @@ class Story_model extends Model {
   }
 
   function load($id, $page = 1) {
-    //@TODO: increment viewed count for this story
     $this->begin_basic_stories_query();
     $this->db->where(array('stories.id' => $id));
     $story = array_pop($this->db->get()->result());
@@ -80,6 +79,14 @@ class Story_model extends Model {
     }
   }
 
+  function save_items($id, $items) {
+    foreach($items as $item_id) {
+      $this->db->delete('items_stories', array('item_id' => $item_id, 'story_id' => $id));
+      $this->db->insert('items_stories', array('item_id' => $item_id, 'story_id' => $id));
+    }
+    return $this->load($id);
+  }
+
   /**
    * validates uniqueness of title
    * @param $title
@@ -94,6 +101,13 @@ class Story_model extends Model {
     if($where) $this->db->where($where);
     if($page || $items_per_page) $this->db->limit($items_per_page, $items_per_page * ($page - 1));
     return $this->db->get()->result();
+  }
+
+  function item_ids($id) {
+    $items = $this->load_items($id);
+    $item_ids = array();
+    foreach($items as $item) $item_ids[] = $item->id;
+    return $item_ids;
   }
 
   function load_comments($id) {
