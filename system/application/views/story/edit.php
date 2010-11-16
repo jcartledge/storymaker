@@ -14,6 +14,7 @@
     <ul class="items"><?php foreach($items as $item) {?>
       <li>
         <input type="checkbox" name="items[]" value="<?php echo $item->id; ?>">
+        <img src="<?php echo attachment_icon($item->mimetype); ?>" title="<?php echo $item->mimetype; ?>">
         <?php echo anchor('/item/view/' . $item->id, $item->title, array('class' => 'item')); ?>
       </li>
     <?php } ?></ul>
