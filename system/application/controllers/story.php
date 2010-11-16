@@ -67,7 +67,9 @@ class Story extends Controller {
     }
     $data['story'] = $story;
     $this->load->model('Item_model');
-    $data['items'] = $this->Item_model->search(isset($_GET['item-search']) ? $_GET['item-search'] : '');
+    $data['item_search'] = isset($_GET['item-search']) ? $_GET['item-search'] : '';
+    $data['items'] = $this->Item_model->search($data['item_search'], 25, $id);
+    $data['num_items'] = $this->Item_model->count($data['item_search'], $id);
     $this->layout->view('story/edit', $data);
   }
 

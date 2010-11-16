@@ -1,8 +1,7 @@
 <ul><?php foreach ($stories as $story) { ?>
   <li>
-    <?php echo $story->title; ?>
-    [<?php echo anchor('/story/view/' . $story->id, 'view'); ?>]
-    [<?php echo anchor('/story/edit/' . $story->id, 'edit'); ?>]
+    <?php echo anchor('/story/edit/' . $story->id, icon('pencil')); ?>
+    <?php echo anchor('/story/view/' . $story->id, $story->title); ?>
   </li>
 <?php } ?></ul>
 

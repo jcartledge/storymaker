@@ -16,6 +16,7 @@ class Manage extends Controller {
     $this->layout->setLayout('layouts/manage');
     $this->load->helper('attachment');
     $this->load->helper('thumbnail');
+    $this->load->helper('icon');
   }
 
   function index() {
