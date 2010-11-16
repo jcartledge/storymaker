@@ -76,6 +76,21 @@ class Story extends Controller {
     $this->layout->view('story/edit', $data);
   }
 
+  function remove($story_id, $item_id) {
+    $this->Story_model->remove_item($story_id, $item_id);
+    redirect($_SERVER['HTTP_REFERER']);
+  }
+
+  function item_up($story_id, $item_id) {
+    $this->Story_model->move_item_up($story_id, $item_id);
+    redirect($_SERVER['HTTP_REFERER']);
+  }
+
+  function item_down($story_id, $item_id) {
+    $this->Story_model->move_item_down($story_id, $item_id);
+    redirect($_SERVER['HTTP_REFERER']);
+  }
+
   function check_title($title) {
     return $this->Story_model->check_title($title);
   }

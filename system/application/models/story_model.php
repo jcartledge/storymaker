@@ -80,11 +80,87 @@ class Story_model extends Model {
   }
 
   function save_items($id, $items) {
+    $position = $this->next_item_story_position($id);
     foreach($items as $item_id) {
-      $this->db->delete('items_stories', array('item_id' => $item_id, 'story_id' => $id));
-      $this->db->insert('items_stories', array('item_id' => $item_id, 'story_id' => $id));
+      $item_story = array('story_id' => $id, 'item_id' => $item_id);
+      if(!$this->item_story_exists($item_story)) {
+        $item_story['position'] = $position++;
+        $this->db->insert('items_stories', $item_story);
+      }
     }
     return $this->load($id, 0);
+  }
+
+  private function max_item_story_position($story_id) {
+    $this->sort_items_stories($story_id);
+    $q = $this->db->query("SELECT MAX(position) AS pos FROM items_stories WHERE story_id = $story_id");
+    $row = $q->result();
+    return is_string($row[0]->pos) ? $row[0]->pos : '0';
+  }
+
+  private function next_item_story_position($story_id) {
+    $this->sort_items_stories($story_id);
+    $q = $this->db->query("SELECT MAX(position) + 1 AS pos FROM items_stories WHERE story_id = $story_id");
+    $row = $q->result();
+    return is_string($row[0]->pos) ? $row[0]->pos : '1';
+  }
+
+  private function sort_items_stories($story_id) {
+    $position = 1;
+    $items = $this->load_items($story_id, 0);
+    foreach($items as $item) {
+      $this->update_item_position(array(
+        'item_id' => $item->id,
+        'story_id' => $story_id,
+        'position' => $position++
+      ));
+    }
+  }
+
+  private function item_story_exists($data) {
+    return !!$this->db->from('items_stories')->where($data)->count_all_results();
+  }
+
+  private function item_story_position($data) {
+    $result = $this->db->from('items_stories')->where($data)->get()->result();
+    return $result[0]->position;
+  }
+
+  function remove_item($story_id, $item_id) {
+    $this->db->delete('items_stories', array('story_id' => $story_id, 'item_id' => $item_id));
+    $this->sort_items_stories($story_id);
+  }
+
+  function move_item_up($story_id, $item_id) {
+    $this->sort_items_stories($story_id);
+    $pos = $this->item_story_position(array('item_id' => $item_id, 'story_id' => $story_id));
+    if($pos == 1) return;
+    $next_pos = $pos - 1;
+    $this->db
+      ->where(array('story_id' => $story_id, 'position' => $next_pos))
+      ->update('items_stories', array('position' => 0));
+    $this->db
+      ->where(array('story_id' => $story_id, 'item_id' => $item_id))
+      ->update('items_stories', array('position' => $next_pos));
+    $this->db
+      ->where(array('story_id' => $story_id, 'position' => 0))
+      ->update('items_stories', array('position' => $pos));
+  }
+
+  function move_item_down($story_id, $item_id) {
+    $this->sort_items_stories($story_id);
+    $pos = $this->item_story_position(array('item_id' => $item_id, 'story_id' => $story_id));
+    if($pos == $this->max_item_story_position($story_id)) return;
+    $next_pos = $pos + 1;
+    $this->db
+      ->where(array('story_id' => $story_id, 'position' => $next_pos))
+      ->update('items_stories', array('position' => 0));
+    $this->db
+      ->where(array('story_id' => $story_id, 'item_id' => $item_id))
+      ->update('items_stories', array('position' => $next_pos));
+    $this->db
+      ->where(array('story_id' => $story_id, 'position' => 0))
+      ->update('items_stories', array('position' => $pos));
   }
 
   /**

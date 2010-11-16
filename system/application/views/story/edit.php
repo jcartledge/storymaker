@@ -20,5 +20,5 @@
 </form>
 <div class="edit-story-items">
   <h3><?php echo count($story->items); ?> item<?php if(count($story->items) != 1) echo 's'; ?> in <em><?php echo $story->title; ?></em></h3>
-  <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove'))); ?>
+  <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'))); ?>
 </div>

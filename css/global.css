@@ -32,10 +32,10 @@ label, input, textarea { display: block; }
 .manage-nav li { float: right; padding: 0.5em; }
 form .error { width: 250px; float: right; margin-right: 100px; }
 
-.item-search { padding-left: 1em; padding-top: 2em; }
+.item-search { padding-left: 1em; padding-top: 2em; z-index: 10000; position: absolute; }
 .item-search input { display: inline; }
-.edit-story { width: 340px; position: absolute; top: 90px; }
-.edit-story h3 { margin:0; margin-bottom: 3em; }
+.edit-story { width: 340px; position: absolute; top: 90px; z-index: 0;}
+.edit-story h3 { margin:0; margin-bottom: 3em; z-index: 0; }
 .edit-story ul, .edit-story li { padding: 0; margin: 0; list-style-type: none; }
 .edit-story input { float: right; }
 .edit-story-items {
@@ -47,4 +47,5 @@ form .error { width: 250px; float: right; margin-right: 100px; }
   padding-left: 10px;
 }
 .edit-story-items h3 { margin: 0; margin-top: 0.3em; margin-bottom: 3em; }
-.edit-story-items ul, .edit-story-items li { padding: 0; margin: 0; list-style-type: none; }
+.edit-story-items ul, .edit-story-items li { padding: 0; margin: 0; margin-right: 0.25em; list-style-type: none; }
+.edit-story-items a { float: right; }
