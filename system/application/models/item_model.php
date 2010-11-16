@@ -45,6 +45,15 @@ class Item_model extends Model {
     }
   }
 
+  /**
+   * validates uniqueness of title
+   * @param $title
+   * @return bool validity
+   */
+  function check_title($title) {
+    return !$this->db->from('items')->like('title', $title)->count_all_results();
+  }
+
   private function begin_basic_items_query($limit = 0, $exclude_ids = array()) {
     $this->db->select('items.*');
     $this->db->from('items');
