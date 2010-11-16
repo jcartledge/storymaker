@@ -58,7 +58,7 @@ class Story extends Controller {
   function edit($id) {
     $authorized = FALSE;
     if($this->tank_auth->is_logged_in()) {
-      $story = $this->Story_model->load($id);
+      $story = $this->Story_model->load($id, 0);
       $authorized = ($story->user_id == $this->tank_auth->get_user_id());
     }
     if(!$authorized) {

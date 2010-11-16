@@ -1,7 +1,7 @@
 <div class="items">
   <h2>My items</h2>
   <a class="add-item" href="/item/add"><?php echo icon('add'); ?> Add an item</a>
-  <?php echo $this->load->view('item/manage-list', array('items' => $items)); ?>
+  <?php echo $this->load->view('item/manage-list', array('items' => $items, 'actions' => array('edit'))); ?>
 </div>
 <div class="stories">
   <h2>My stories</h2>

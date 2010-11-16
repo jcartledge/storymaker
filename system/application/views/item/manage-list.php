@@ -1,7 +1,7 @@
-<?php $this->load->helper('icon'); ?>
+<?php $this->load->helper(array('icon', 'item')); ?>
 <ul><?php foreach ($items as $item) { ?>
   <li>
-    <?php echo anchor('/item/edit/' . $item->id, icon('pencil')); ?>
+    <?php if(isset($actions)) foreach($actions as $action) echo item_action($action, $item); ?>
     <?php echo $item->title; ?>
   </li>
 <?php } ?></ul>

@@ -84,7 +84,7 @@ class Story_model extends Model {
       $this->db->delete('items_stories', array('item_id' => $item_id, 'story_id' => $id));
       $this->db->insert('items_stories', array('item_id' => $item_id, 'story_id' => $id));
     }
-    return $this->load($id);
+    return $this->load($id, 0);
   }
 
   /**
@@ -99,12 +99,12 @@ class Story_model extends Model {
   function load_items($id, $page = 1, $items_per_page = 10, $where = NULL) {
     $this->begin_basic_items_query($id);
     if($where) $this->db->where($where);
-    if($page || $items_per_page) $this->db->limit($items_per_page, $items_per_page * ($page - 1));
+    if($page && $items_per_page) $this->db->limit($items_per_page, $items_per_page * ($page - 1));
     return $this->db->get()->result();
   }
 
   function item_ids($id) {
-    $items = $this->load_items($id);
+    $items = $this->load_items($id, 0);
     $item_ids = array();
     foreach($items as $item) $item_ids[] = $item->id;
     return $item_ids;
@@ -144,7 +144,7 @@ class Story_model extends Model {
   }
 
   private function begin_basic_items_query($id) {
-    $this->db->select('items.*, items_stories.pos_x, items_stories.pos_y, users.username');
+    $this->db->select('items.*, items_stories.pos_x, items_stories.pos_y, items_stories.story_id, users.username');
     $this->db->from('items');
     $this->db->join('users', 'users.id = items.user_id');
     $this->db->join('items_stories', 'items.id = items_stories.item_id');
