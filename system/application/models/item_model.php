@@ -25,6 +25,13 @@ class Item_model extends Model {
     return $this->db->count_all_results();
   }
 
+  function get_all_themes() {
+    $themes = array();
+    $themes_result = $this->db->select('theme')->from('themes')->get()->result();
+    foreach($themes_result as $row) $themes[] = $row->theme;
+    return $themes;
+  }
+
   private function begin_search_query($str = '', $limit = 0, $story_id = NULL) {
     $exclude_ids = array();
     if($story_id) {
