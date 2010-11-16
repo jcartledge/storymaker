@@ -16,6 +16,9 @@ class Item_model extends Model {
   }
 
   function search($str = '', $limit = 25, $story_id = NULL) {
+    $page = 1;
+    if(isset($_GET['page'])) $page = $_GET['page'];
+    $limit = array($limit, ($page - 1) * $limit);
     $this->begin_search_query($str, $limit, $story_id);
     return $this->db->get()->result();
   }
@@ -59,7 +62,7 @@ class Item_model extends Model {
     $this->db->from('items');
     $this->db->join('users', 'users.id = items.user_id');
     if($exclude_ids) $this->db->where_not_in('items.id', $exclude_ids);
-    if($limit) $this->db->limit($limit);
+    if($limit) call_user_func_array(array($this->db, 'limit'), (array)$limit);
   }
 
 }

@@ -54,3 +54,6 @@ ul, li { padding: 0; margin: 0; list-style-type: none; }
 .add-item div { margin-bottom: 1em; padding: 1em; border: 1px solid gray; }
 .themes p { clear: both; }
 .themes label { float: left; width: 230px; height: 1.5em; }
+
+.pager { clear: both; }
+.pager .next { float: right; }

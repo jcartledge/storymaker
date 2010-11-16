@@ -1,16 +1,14 @@
 <h2>Build a story</h2>
 <form class="item-search" action="" method="get">
-  <input type="search" placeholder="Search for items to add" name="item-search" value="<?php echo $item_search; ?>">
-  <input type="submit" value="go">
+  <input type="search" placeholder="Filter the list of items" name="item-search" value="<?php echo $item_search; ?>">
+  <input type="submit" value="Filter">
 </form>
 <form class="edit-story" action="" method="post">
   <fieldset>
   <h3>Add items to your story</h3>
-  <p>
-    Showing <?php echo count($items); ?>
-    of <?php echo $num_items; ?> unused
-    item<?php if($num_items != 1) echo 's'; ?><?php if($item_search) echo " matching <em>{$item_search}</em>"; ?>.
-  </p>
+    <?php if(count($items) < $num_items) {
+      echo $this->load->view('item/pager', array('page_size' => $page_size, 'num_items' => $num_items));
+    } ?>
     <ul class="items"><?php foreach($items as $item) {?>
       <li>
         <input type="checkbox" name="items[]" value="<?php echo $item->id; ?>">
