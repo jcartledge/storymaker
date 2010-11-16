@@ -1,5 +1,9 @@
 .items, .stories {
   padding-top: 50px;
-  width: 350px;
+  width: 330px;
+  margin-left: 10px;
+  margin-right: 10px;
   float: left;
 }
+.items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
+a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }
