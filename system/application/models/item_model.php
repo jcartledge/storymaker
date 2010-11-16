@@ -2,6 +2,13 @@
 
 class Item_model extends Model {
 
+  function load($item_id) {
+    $this->begin_basic_items_query(1);
+    $this->db->where('items.id', $item_id);
+    $result = $this->db->get()->result();
+    return $result[0];
+  }
+
   function list_by_user($user_id, $limit = 10) {
     $this->begin_basic_items_query($limit);
     $this->db->where(array('users.id' => $user_id));

@@ -1,6 +1,6 @@
 <div class="story-item" id="<?php echo $item->id; ?>">
     <h3 class="item-title"><img src="/images/book.gif"> <?php echo $item->title; ?></h3>
-    <?php if($item->attachment) { ?><div <?php if ($story->layout == 'scrapbook' && !is_null($item->pos_x)) { ?>
+    <?php if($item->attachment) { ?><div <?php if (isset($story) && $story->layout == 'scrapbook' && !is_null($item->pos_x)) { ?>
       style="position:absolute; left:<?php echo $item->pos_x; ?>px; top:<?php echo $item->pos_y; ?>;"<?php } ?>
       class="item-attachment">
       <?php echo attachment_view($item->attachment, $item->description, $item->mimetype); ?>
@@ -18,5 +18,5 @@
     <?php if($item->place) { ?><dl class="item-place">
       <dt>Place: </dt>
       <dd><?php echo $item->place; ?></dd>
-    </dl><?php } ?>   
+    </dl><?php } ?>
 </div>
