@@ -26,7 +26,7 @@
 </div>
 <script>
 $(function(){
-  $('a.item').click(function(){
+  $('a.item').live('click', function(){
     var self = $(this);
     var container = self.next('.item-preview');
     if(container.length) {
@@ -43,5 +43,27 @@ $(function(){
     }
     return false;
   });
+  (function refresh_sortables() {
+    $('.arrow_up, .arrow_down, .delete, input[type=checkbox]').remove();
+    $('.edit-story ul,').sortable({
+      revert: 200,
+      connectWith: '.edit-story-items ul'
+    });
+    $('.edit-story-items ul,').sortable({
+      revert: 200,
+      connectWith: '.edit-story ul',
+      update: function() {
+        var data = {
+          'items[]': $.makeArray($('.edit-story-items a.item').map(function(){ return this.href.match(/[\d]+$/); })),
+          replace: true
+        };
+        $.post(location.href, data, function(data) {
+          $('.edit-story').replaceWith($(data).find('.edit-story'));
+          $('.edit-story-items').replaceWith($(data).find('.edit-story-items'));
+          refresh_sortables();
+        });
+      }
+    });
+  })();
 });
 </script>

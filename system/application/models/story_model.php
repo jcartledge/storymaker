@@ -80,6 +80,9 @@ class Story_model extends Model {
   }
 
   function save_items($id, $items) {
+    if($this->input->post('replace')) {
+      $this->db->delete('items_stories', array('story_id' => $id));
+    }
     $position = $this->next_item_story_position($id);
     foreach($items as $item_id) {
       $item_story = array('story_id' => $id, 'item_id' => $item_id);
