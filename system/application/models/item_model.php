@@ -55,11 +55,11 @@ class Item_model extends Model {
       $data['year'] = $this->input->post('year');
       $data['place'] = $this->input->post('place');
       //mimetype
-      if(isset($_FILES['image-file'])) {
+      if($_FILES['image-file']['type']) {
         $attachment = $_FILES['image-file'];
-      } elseif(isset($_FILES['document-file'])) {
+      } elseif($_FILES['document-file']['type']) {
         $attachment = $_FILES['document-file'];
-      } elseif(isset($_FILES['video-file'])) {
+      } elseif($_FILES['video-file']['type']) {
         $attachment = $_FILES['video-file'];
       }
       if(isset($attachment)) {
@@ -75,7 +75,13 @@ class Item_model extends Model {
           $data['attachment'] = $image_url;
         } elseif ($this->input->post('video-url')) {
           $video_url = $this->input->post('video-url');
-          //if(preg_match())
+          if(preg_match('/youtube/', $video_url)) {
+            $data['mimetype'] = 'video/youtube';
+            $data['attachment'] = $video_url;
+          } else if(preg_match('/vimeo/', $video_url)) {
+            $data['mimetype'] = 'video/vimeo';
+            $data['attachment'] = $video_url;
+          }
         }
       }
       $this->db->insert('items', $data);
