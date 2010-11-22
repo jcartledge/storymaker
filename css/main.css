@@ -1,8 +1,2 @@
-body {
-  position: relative;
-  background: url('/images/SHorangeheader.gif') top left no-repeat;
-}
-
 .homepage-stories img { display:none; }
-
 .items li:hover, .edit-story-items li:hover { background-color: #eee; }

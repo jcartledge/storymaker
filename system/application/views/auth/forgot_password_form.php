@@ -7,11 +7,13 @@ $login = array(
 	'size'	=> 30,
 );
 if ($this->config->item('use_username', 'tank_auth')) {
-	$login_label = 'Email or login';
+	$login_label = 'Email or username';
 } else {
 	$login_label = 'Email';
 }
 ?>
+<h2>Forgot your password?</h2>
+<p>Enter your username or email address below and we'll email you instructions to reset your password.</p>
 <?php echo form_open($this->uri->uri_string()); ?>
 <table>
 	<tr>
@@ -20,5 +22,5 @@ if ($this->config->item('use_username', 'tank_auth')) {
 		<td style="color: red;"><?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?></td>
 	</tr>
 </table>
-<?php echo form_submit('reset', 'Get a new password'); ?>
+<?php echo form_submit('reset', 'Reset password'); ?>
 <?php echo form_close(); ?>

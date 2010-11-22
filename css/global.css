@@ -1,5 +1,10 @@
 html { height: 99; }
-body { min-height: 100%; }
+body {
+  min-height: 100%;
+  position: relative;
+  background: url('/images/SHorangeheader.gif') top left no-repeat;
+}
+
 #content { width: 700px; margin-left: 100px; padding-bottom: 50px; margin-top: -10px;}
 
 h1 { margin-left: -1000px; width: 1200px; }

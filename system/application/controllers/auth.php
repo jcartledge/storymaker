@@ -9,6 +9,8 @@ class Auth extends Controller
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->load->library('tank_auth');
+		$this->load->library('layout');
+    $this->layout->setLayout('layouts/auth');
 		$this->lang->load('tank_auth');
 	}
 
@@ -88,7 +90,7 @@ class Auth extends Controller
 					$data['captcha_html'] = $this->_create_captcha();
 				}
 			}
-			$this->load->view('auth/login_form', $data);
+			$this->layout->view('auth/login_form', $data);
 		}
 	}
 
@@ -283,7 +285,7 @@ class Auth extends Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/forgot_password_form', $data);
+			$this->layout->view('auth/forgot_password_form', $data);
 		}
 	}
 

@@ -7,9 +7,9 @@ $login = array(
 	'size'	=> 30,
 );
 if ($login_by_username AND $login_by_email) {
-	$login_label = 'Email or login';
+	$login_label = 'Email or username';
 } else if ($login_by_username) {
-	$login_label = 'Login';
+	$login_label = 'Username';
 } else {
 	$login_label = 'Email';
 }
@@ -32,6 +32,7 @@ $captcha = array(
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
+<h2>Log in</h2>
 <table>
 	<tr>
 		<td><?php echo form_label($login_label, $login['id']); ?></td>
@@ -81,13 +82,10 @@ $captcha = array(
 	} ?>
 
 	<tr>
-		<td colspan="3">
-			<?php echo form_checkbox($remember); ?>
-			<?php echo form_label('Remember me', $remember['id']); ?>
-			<?php echo anchor('/auth/forgot_password/', 'Forgot password'); ?>
-			<?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'Register'); ?>
-		</td>
+		<td><?php echo form_label('Remember me', $remember['id']); ?></td>
+		<td colspan="2"><?php echo form_checkbox($remember); ?></td>
 	</tr>
 </table>
 <?php echo form_submit('submit', 'Let me in'); ?>
 <?php echo form_close(); ?>
+<?php echo anchor('/auth/forgot_password/', 'Forgot your password?'); ?>
