@@ -73,7 +73,9 @@ class Story_model extends Model {
 
   function save($data) {
     if(isset($data['id'])) {
-      // update
+      $this->db->where('id', $data['id']);
+      $this->db->update('stories', $data);
+      return $this->load($data['id'], 0);
     } else {
       $data['created_at'] = date('Y-m-d H:i:s', time());
       $data['viewed'] = 0;

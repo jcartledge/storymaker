@@ -22,19 +22,29 @@
 </form>
 <div class="edit-story-items">
   <h3><?php echo count($story->items); ?> item<?php if(count($story->items) != 1) echo 's'; ?> in <em><?php echo $story->title; ?></em></h3>
-<?php echo form_dropdown('layout', array(
-  'narrative' => 'narrative',
-  'slideshow' => 'slideshow',
-  'shoebox' => 'shoebox',
-  'gallery' => 'gallery',
-  'scrapbook' => 'scrapbook'
-), $story->layout);
-?>
+  <form class="edit-story-layout" method="post" action="">
+    <?php echo form_dropdown('layout', array(
+      'narrative' => 'narrative',
+      'slideshow' => 'slideshow',
+      'shoebox' => 'shoebox',
+      'gallery' => 'gallery',
+      'scrapbook' => 'scrapbook'
+    ), $story->layout);
+    ?>
+    <input type="submit" value="Set layout">
+  </form>
   <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1)); ?>
 </div>
 <script>
 $(function(){
-  $().change(function(){});
+  $('.edit-story-layout select').live('change', function(){
+    var form = $('.edit-story-layout');
+    $.post(form[0].action, form.serialize(), function(data){
+      $('.edit-story').replaceWith($(data).find('.edit-story'));
+      $('.edit-story-items').replaceWith($(data).find('.edit-story-items'));
+      refresh_sortables();
+    });
+  });
   $('a.item').live('click', function(){
     var self = $(this);
     var container = self.next('.item-preview');
@@ -52,7 +62,7 @@ $(function(){
     }
     return false;
   });
-  (function refresh_sortables() {
+  function refresh_sortables() {
     $('.arrow_up, .arrow_down, .delete, input[type=checkbox], input[type=submit]').remove();
     $('.edit-story ul,').sortable({
       revert: 200,
@@ -73,6 +83,7 @@ $(function(){
         });
       }
     });
-  })();
+  }
+  refresh_sortables();
 });
 </script>

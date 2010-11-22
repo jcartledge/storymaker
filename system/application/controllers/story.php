@@ -75,6 +75,9 @@ class Story extends Controller {
     if(isset($_POST['items'])) {
       $story = $this->Story_model->save_items($id, $_POST['items']);
     }
+    if(isset($_POST['layout'])) {
+      $story = $this->Story_model->save(array('id' => $id, 'layout' => $_POST['layout']));
+    }
     $data['story'] = $story;
     $this->load->model('Item_model');
     $data['item_search'] = isset($_GET['item-search']) ? $_GET['item-search'] : '';
