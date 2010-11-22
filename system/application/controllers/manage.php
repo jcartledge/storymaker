@@ -20,8 +20,16 @@ class Manage extends Controller {
   }
 
   function index() {
-    $data['stories'] = $this->Story_model->list_by_user($this->tank_auth->get_user_id());
-    $data['items'] = $this->Item_model->list_by_user($this->tank_auth->get_user_id());
+    $user_id = $this->tank_auth->get_user_id();
+    $data['username'] = $this->tank_auth->get_username();
+    $data['search'] = $this->input->get('q');
+    $data['page_size'] = 15;
+    $data['stories'] = $this->Story_model->list_by_user($user_id, $data['page_size'], $data['search']);
+    $data['num_stories'] = $this->Story_model->count($data['search'], $user_id);
+    $data['story_search'] = $data['search'];
+    $data['items'] = $this->Item_model->list_by_user($user_id, $data['page_size'], $data['search']);
+    $data['num_items'] = $this->Item_model->count($data['search'], NULL, $user_id);
+    $data['item_search'] = $data['search'];
     $this->layout->view('manage/index', $data);
   }
 }

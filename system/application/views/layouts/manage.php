@@ -12,7 +12,7 @@
   <body>
     <?php echo $this->load->view('manage/nav'); ?>
     <h1><a href="/">Small Histories</a></h1>
-    <?php echo $this->load->view('story/search_form'); ?>
+    <?php echo $this->load->view('manage/search_form'); ?>
     <div id="content">
       <?php echo $content_for_layout; ?>
     </div>

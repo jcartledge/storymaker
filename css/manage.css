@@ -1,9 +1,10 @@
 .items, .stories {
-  padding-top: 50px;
-  width: 330px;
+  margin-top: 50px;
+  width: 326px;
   margin-left: 10px;
   margin-right: 10px;
   float: left;
+  border: 2px solid gray;
 }
 .items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
 a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }

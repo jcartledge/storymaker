@@ -25,10 +25,13 @@ class Story_model extends Model {
     return $this->db->get()->result();
   }
 
-  function list_by_user($user_id, $num = 10) {
-    $this->begin_basic_stories_query($num);
-    $this->db->where(array('users.id' => $user_id));
-    return $this->db->get()->result();
+  function list_by_user($user_id, $limit = 10, $str) {
+    return $this->search($str, $limit, $user_id);
+  }
+
+  function count($str = '', $user_id = NULL) {
+    $this->begin_search_query($str, 0, $user_id);
+    return $this->db->count_all_results();
   }
 
   function homepage_stories () {
@@ -44,11 +47,11 @@ class Story_model extends Model {
       order by rand() limit 10')->result();
   }
 
-  private function begin_basic_stories_query($num = NULL) {
+  private function begin_basic_stories_query($limit = 0) {
     $this->db->select('stories.*, users.username');
     $this->db->from('stories');
     $this->db->join('users', 'users.id = stories.user_id');
-    if($num) $this->db->limit($num);
+    if($limit) call_user_func_array(array($this->db, 'limit'), (array)$limit);
   }
 
   function load($id, $page = 1) {
@@ -209,13 +212,22 @@ class Story_model extends Model {
     if(!$this->akismet->is_spam()) $this->db->insert('comments', $comment);
   }
 
-  function search($q) {
-    $this->begin_basic_stories_query();
-    $this->db->like('title', $q);
-    $this->db->or_like('description', $q);
-    return $this->db->get()->result();
+  private function begin_search_query($str = '', $limit = 25, $user_id = NULL) {
+    $this->begin_basic_stories_query($limit);
+    if($user_id) $this->db->where(array('user_id' => $user_id));
+    if($str) {
+      $str = $this->db->escape("%$str%");
+      $this->db->where("(title LIKE $str OR description LIKE $str)", NULL, FALSE);
+    }
   }
 
+  function search($str = '', $limit = 25, $user_id = NULL) {
+    $page = 1;
+    if(isset($_GET['story-page'])) $page = $_GET['story-page'];
+    $limit = array($limit, ($page - 1) * $limit);
+    $this->begin_search_query($str, $limit, $user_id);
+    return $this->db->get()->result();
+  }
   function update_item_position($data) {
     $this->db->where('item_id = ' . $data['item_id']);
     $this->db->where('story_id = ' . $data['story_id']);
