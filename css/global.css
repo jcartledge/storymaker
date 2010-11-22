@@ -12,8 +12,8 @@ h1 a { display: block; width: 100%; }
 
 .comment { clear: left; }
 .comment dl { padding-top: 1em; padding-bottom: 1em; }
-.comment dt { width: 100px; margin: 0; float: left; clear: left; }
-.comment dd { margin: 0; float: left; }
+dt { width: 100px; margin: 0; float: left; clear: left; font-weight: bold; }
+dd { margin: 0; float: left; }
 
 .homepage-stories, .homepage-stories a {
   display:block;

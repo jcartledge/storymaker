@@ -19,4 +19,5 @@
       <dt>Place: </dt>
       <dd><?php echo $item->place; ?></dd>
     </dl><?php } ?>
+  <br style="clear:left;">
 </div>
