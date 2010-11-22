@@ -6,7 +6,7 @@ function attachment_type($mimetype) {
     'youtube video' => array('video/youtube'),
     'mp3 audio'     => array('audio/mp3', 'audio/mpeg'),
     'object audio'  => array('audio/aiff', 'audio/wav'),
-    'image'         => array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'),
+    'image'         => array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/link'),
     'download'      => array('application/msword', 'application/pdf')
   );
   foreach($types as $type => $mimetypes) {

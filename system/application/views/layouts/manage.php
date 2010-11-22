@@ -5,9 +5,11 @@
     <script src="/js/jquery-ui-1.8.6.custom.min.js"></script>
     <script src="/js/instant.js"></script>
     <script src="/js/jquery.cycle.lite.min.js"></script>
+    <script src="/js/jquery.lightbox-0.5.pack.js"></script>
     <link rel="stylesheet" href="/css/global.css" type="text/css">
     <link rel="stylesheet" href="/css/manage.css" type="text/css">
     <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery.lightbox-0.5.css"></script>
   </head>
   <body>
     <?php echo $this->load->view('manage/nav'); ?>

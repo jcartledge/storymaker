@@ -67,7 +67,16 @@ class Item_model extends Model {
         if($data['attachment'] != "") $data['mimetype'] = $attachment['type'];
       } else {
         // handle other attachment types: embeds, links
+        if($this->input->post('image-url')) {
+          $image_url = $this->input->post('image-url');
+          $data['mimetype'] = 'image/link';
+          $data['attachment'] = $image_url;
+        } elseif ($this->input->post('video-url')) {
+          $video_url = $this->input->post('video-url');
+          //if(preg_match())
+        }
       }
+      // themes
       $this->db->insert('items', $data);
       return $this->db->insert_id();
     }

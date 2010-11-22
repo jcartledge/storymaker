@@ -23,6 +23,7 @@ $(function(){
         self.removeClass('loading');
         self.addClass('open');
         container.slideDown('slow');
+        $('.item-attachment a').lightBox();
       });
     }
     return false;

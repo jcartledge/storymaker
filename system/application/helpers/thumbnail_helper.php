@@ -2,7 +2,10 @@
 
 function thumbnail_url($image_url) {
   $filespec = dirname($_SERVER['SCRIPT_FILENAME']) . $image_url;
-  if(!file_exists($filespec)) return '/images/not-found.gif';
+  if(!file_exists($filespec)) {
+    // @TODO: handle remote thumb here
+    return '/images/not-found.gif';
+  }
   $thumb_dir = dirname($filespec) . DIRECTORY_SEPARATOR . 'thumbs';
   if(!is_dir($thumb_dir)) mkdir($thumb_dir, 0777, TRUE);
   $thumb_filespec = $thumb_dir . DIRECTORY_SEPARATOR . basename($image_url);
