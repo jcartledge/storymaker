@@ -62,3 +62,6 @@ ul, li { padding: 0; margin: 0; list-style-type: none; }
 
 .pager { clear: both; }
 .pager .next { float: right; }
+
+textarea { width: 350px; height: 120px; }
+.text-item textarea { width: 350px; height: 220px; }
