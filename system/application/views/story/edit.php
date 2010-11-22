@@ -22,10 +22,19 @@
 </form>
 <div class="edit-story-items">
   <h3><?php echo count($story->items); ?> item<?php if(count($story->items) != 1) echo 's'; ?> in <em><?php echo $story->title; ?></em></h3>
+<?php echo form_dropdown('layout', array(
+  'narrative' => 'narrative',
+  'slideshow' => 'slideshow',
+  'shoebox' => 'shoebox',
+  'gallery' => 'gallery',
+  'scrapbook' => 'scrapbook'
+), $story->layout);
+?>
   <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1)); ?>
 </div>
 <script>
 $(function(){
+  $().change(function(){});
   $('a.item').live('click', function(){
     var self = $(this);
     var container = self.next('.item-preview');
@@ -44,7 +53,7 @@ $(function(){
     return false;
   });
   (function refresh_sortables() {
-    $('.arrow_up, .arrow_down, .delete, input[type=checkbox]').remove();
+    $('.arrow_up, .arrow_down, .delete, input[type=checkbox], input[type=submit]').remove();
     $('.edit-story ul,').sortable({
       revert: 200,
       connectWith: '.edit-story-items ul'
