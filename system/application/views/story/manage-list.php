@@ -7,5 +7,5 @@
     <?php if(isset($actions)) foreach($actions as $action) echo story_action($action, $story); ?>
     <?php echo anchor('/story/view/' . $story->id, $story->title, array('class' => 'story')); ?>
   </li>
+<?php if(!count($stories)) { ?><li>There are no stories to display.</li><?php } ?>
 <?php } ?></ul>
-<?php if(!count($stories)) { ?><p>You don't have any stories yet.</p><?php } ?>

@@ -1,10 +1,16 @@
-<form class="add-item" action="" method="post">
+<h2>Add an item</h2>
+<form class="add-item" action="" method="post" type="multipart/form-data">
   <label for="title">Item name</label>
   <?php echo form_error('title'); ?>
-  <input name="title" value="<?php echo set_value('title'); ?>">
+  <input name="title" value="<?php echo set_value('title'); ?>"><br>
+
+  <label for="description">Describe the item</label>
+  <?php echo form_error('description'); ?>
+  <textarea name="description"><?php echo set_value('description'); ?></textarea><br>
 
   <?php echo form_error('type'); ?>
 
+  <p>Choose the type of item</p>
   <label><input type="radio" name="type" <?php if($type == 'text') echo 'checked="checked" '; ?>value="text">Text</label>
     <?php echo form_error('content'); ?>
     <div class="<?php if($type == 'text') echo 'open-at-start '; ?>text-item">
@@ -31,7 +37,8 @@
   <label><input type="radio" name="type" <?php if($type == 'video') echo 'checked="checked" '; ?>value="video">Video</label>
   <div class="<?php if($type == 'video') echo 'open-at-start '; ?>video-item">
     <?php echo form_error('video-url'); ?>
-    <label for="video-url">Link to a video on the web</label>
+    <label for="video-url">Link to a video on the web.</label>
+    <p>This works for youtube and vimeo. Paste the URL of the page containing the video here:</p>
     <input name="video-url" value="<?php echo set_value('video-url'); ?>">
     <p>Or</p>
     <label for="video-file">Upload a video</label>

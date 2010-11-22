@@ -226,6 +226,7 @@ class Story_model extends Model {
     if(isset($_GET['story-page'])) $page = $_GET['story-page'];
     $limit = array($limit, ($page - 1) * $limit);
     $this->begin_search_query($str, $limit, $user_id);
+    $this->db->order_by('id', 'desc');
     return $this->db->get()->result();
   }
   function update_item_position($data) {

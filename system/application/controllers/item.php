@@ -51,11 +51,8 @@ class Item extends Controller {
         $this->form_validation->set_message('check_video', 'You need to provide an video URL or upload an video file.');
     }
     if($this->form_validation->run()) {
-      $item_id = $this->Item_model->save(array(
-        'user_id'     => $this->tank_auth->get_user_id(),
-        //@TODO: add the fields from $_POST here - prob just let the model work this out
-      ));
-      if($item_id) redirect('/item/edit/' . $item_id);
+      $item_id = $this->Item_model->save();
+      if($item_id) redirect('/manage');
     }
     $data['themes'] = $this->Item_model->get_all_themes();
     $data['type'] = isset($_POST['type']) ? $_POST['type'] : '';

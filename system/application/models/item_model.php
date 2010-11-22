@@ -25,6 +25,7 @@ class Item_model extends Model {
     if(isset($_GET['item-page'])) $page = $_GET['item-page'];
     $limit = array($limit, ($page - 1) * $limit);
     $this->begin_search_query($str, $limit, $story_id, $user_id);
+    $this->db->order_by('id', 'desc');
     return $this->db->get()->result();
   }
 
@@ -38,6 +39,38 @@ class Item_model extends Model {
     $themes_result = $this->db->select('theme')->from('themes')->get()->result();
     foreach($themes_result as $row) $themes[] = $row->theme;
     return $themes;
+  }
+
+  function save($id = NULL) {
+    $data = array();
+    if($id) {
+      // update
+    } else {
+      $data['created_at'] = date('Y-m-d H:i:s', time());
+      $data['user_id'] = $this->tank_auth->get_user_id();
+      $data['title'] = $this->input->post('title');
+      $data['content'] = $this->input->post('content');
+      $data['description'] = $this->input->post('description');
+      $data['country'] = $this->input->post('country');
+      $data['year'] = $this->input->post('year');
+      $data['place'] = $this->input->post('place');
+      //mimetype
+      if(isset($_FILES['image_file'])) {
+        $attachment = $_FILES['image_file'];
+      } elseif(isset($_FILES['document_file'])) {
+        $attachment = $_FILES['document_file'];
+      } elseif(isset($_FILES['video_file'])) {
+        $attachment = $_FILES['video_file'];
+      }
+      if(isset($attachment)) {
+        $data['attachment'] = $this->save_attachment($attachment);
+        if($data['attachment'] != "") $data['mimetype'] = $attachment['type'];
+      } else {
+        // handle other attachment types: embeds, links
+      }
+      $this->db->insert('items', $data);
+      return $this->db->insert_id();
+    }
   }
 
   private function begin_search_query($str = '', $limit = 0, $story_id = NULL, $user_id = NULL) {
