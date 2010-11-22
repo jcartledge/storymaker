@@ -8,7 +8,6 @@
   <a class="add-story" href="/story/add"><?php echo icon('add'); ?> Add a story</a>
   <?php echo $this->load->view('story/manage-list', array('stories' => $stories, 'actions' => array('edit'))); ?>
 </div>
-<br clear="left">
 <script>
 $(function(){
   $('a.item').live('click', function(){

@@ -1,3 +1,4 @@
+<br clear="left">
 <div class="footer">
   <a href="/">Home</a> |
   <a href="/page/disclaimer">Disclaimer</a> |
