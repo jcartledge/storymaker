@@ -78,10 +78,26 @@ class Item_model extends Model {
           //if(preg_match())
         }
       }
-      // themes
       $this->db->insert('items', $data);
-      return $this->db->insert_id();
+      $item_id = $this->db->insert_id();
+      if($this->input->post('themes')) foreach($this->input->post('themes') as $theme) {
+        $this->save_theme($theme, $item_id);
+      }
+      return $item_id;
     }
+  }
+
+  private function save_theme($theme, $item_id = NULL) {
+    $theme = array('theme' => $theme);
+    $theme_result = $this->db->select('id')->from('themes')->where($theme)->get()->result();
+    if(count($theme_result)) {
+      $theme_id = $theme_result[0]->id;
+      $this->db->delete('items_themes', array('item_id' => $item_id, 'theme_id' => $theme_id));
+    } else {
+      $this->db->insert('themes', $theme);
+      $theme_id = $this->db->insert_id();
+    }
+    $this->db->insert('items_themes', array('item_id' => $item_id, 'theme_id' => $theme_id));
   }
 
   private function save_attachment($file) {
