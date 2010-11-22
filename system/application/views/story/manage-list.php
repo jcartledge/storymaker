@@ -5,4 +5,4 @@
     <?php echo anchor('/story/view/' . $story->id, $story->title, array('class' => 'story')); ?>
   </li>
 <?php } ?></ul>
-
+<?php if(!count($stories)) { ?><p>You don't have any stories yet.</p><?php } ?>

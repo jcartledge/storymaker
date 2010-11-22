@@ -6,7 +6,14 @@ class Item_model extends Model {
     $this->begin_basic_items_query(1);
     $this->db->where('items.id', $item_id);
     $result = $this->db->get()->result();
-    return $result[0];
+    $item = $result[0];
+    $item->num_stories = $this->db->from('items_stories')->where('item_id', $item->id)->count_all_results();
+    return $item;
+  }
+
+  function delete($item_id) {
+    $this->db->delete('items_stories', array('item_id' => $item_id));
+    $this->db->delete('items', array('id' => $item_id));
   }
 
   function list_by_user($user_id, $limit = 10) {

@@ -89,3 +89,4 @@ $captcha = array(
 <?php echo form_submit('submit', 'Let me in'); ?>
 <?php echo form_close(); ?>
 <?php echo anchor('/auth/forgot_password/', 'Forgot your password?'); ?>
+<script>$(function(){$('#login').focus();})</script>

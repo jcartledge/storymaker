@@ -10,6 +10,7 @@ class Item extends Controller {
     $this->layout->setLayout('layouts/main');
     $this->load->helper('attachment');
     $this->load->helper('thumbnail');
+    $this->load->helper('url');
   }
 
   function position() {
@@ -61,6 +62,17 @@ class Item extends Controller {
     $this->layout->view('item/add', $data);
   }
 
+  function delete($id) {
+    if($_POST) {
+      $this->Item_model->delete($id);
+      //set message?
+      if(isset($_POST['url'])) redirect($_POST['url']);
+    } else {
+      $data['item'] = $this->Item_model->load($id);
+      $data['url'] = $_SERVER['HTTP_REFERER'];
+      $this->layout->view('item/delete', $data);
+    }
+  }
   function check_title($title) {
     return $this->Item_model->check_title($title);
   }
