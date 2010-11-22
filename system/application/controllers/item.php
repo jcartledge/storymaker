@@ -76,11 +76,11 @@ class Item extends Controller {
   }
 
   function check_image($url) {
-    return($url || $this->input->post('image-file'));
+    return($url || $_FILES['image-file']);
   }
 
   function check_video($url) {
-    return($url || $this->input->post('video-file'));
+    return($url || $_FILES['video-file']);
   }
 
   function years() {

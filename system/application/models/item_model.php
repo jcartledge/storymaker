@@ -55,16 +55,18 @@ class Item_model extends Model {
       $data['year'] = $this->input->post('year');
       $data['place'] = $this->input->post('place');
       //mimetype
-      if(isset($_FILES['image_file'])) {
-        $attachment = $_FILES['image_file'];
-      } elseif(isset($_FILES['document_file'])) {
-        $attachment = $_FILES['document_file'];
-      } elseif(isset($_FILES['video_file'])) {
-        $attachment = $_FILES['video_file'];
+      if(isset($_FILES['image-file'])) {
+        $attachment = $_FILES['image-file'];
+      } elseif(isset($_FILES['document-file'])) {
+        $attachment = $_FILES['document-file'];
+      } elseif(isset($_FILES['video-file'])) {
+        $attachment = $_FILES['video-file'];
       }
       if(isset($attachment)) {
         $data['attachment'] = $this->save_attachment($attachment);
-        if($data['attachment'] != "") $data['mimetype'] = $attachment['type'];
+        if($data['attachment']) {
+          $data['mimetype'] = $attachment['type'];
+        }
       } else {
         // handle other attachment types: embeds, links
         if($this->input->post('image-url')) {
@@ -80,6 +82,16 @@ class Item_model extends Model {
       $this->db->insert('items', $data);
       return $this->db->insert_id();
     }
+  }
+
+  private function save_attachment($file) {
+    $this->load->helper('attachment');
+    if(!is_array($file) || $file['error'] != 0) return;
+    $type = attachment_type($file['type']);
+    if(!isset($type)) return;
+    $save_as = "/attachments/{$type}/{$file[name]}";
+    if(!move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $save_as)) return;
+    return $save_as;
   }
 
   private function begin_search_query($str = '', $limit = 0, $story_id = NULL, $user_id = NULL) {

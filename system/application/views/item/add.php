@@ -1,5 +1,5 @@
 <h2>Add an item</h2>
-<form class="add-item" action="" method="post" type="multipart/form-data">
+<form class="add-item" action="" method="post" enctype="multipart/form-data">
   <label for="title">Item name</label>
   <?php echo form_error('title'); ?>
   <input name="title" value="<?php echo set_value('title'); ?>"><br>
