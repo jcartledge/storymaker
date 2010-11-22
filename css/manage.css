@@ -8,3 +8,8 @@
 }
 .items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
 a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }
+
+.story-preview a {
+  width: 100%:
+  text-align: right;
+}

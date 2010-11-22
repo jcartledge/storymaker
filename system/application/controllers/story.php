@@ -27,6 +27,13 @@ class Story extends Controller {
     $this->layout->view('story/view', $data);
   }
 
+  function preview($id) {
+    $data['story'] = $this->Story_model->load($id);
+    $data['owner'] = ($data['story']->username == $this->tank_auth->get_username());
+    $this->layout->setLayout('layouts/story');
+    $this->layout->view('story/preview', $data);
+  }
+
   function search() {
     $data['search'] = htmlspecialchars($_GET['q']);
     $data['stories'] = $this->Story_model->search(mysql_real_escape_string($_GET['q']));
