@@ -104,4 +104,30 @@ class Item_model extends Model {
     if($limit) call_user_func_array(array($this->db, 'limit'), (array)$limit);
   }
 
+  function years($str = '') {
+    $this->db->select('year')->distinct()->from('items')->order_by('year');
+    if($str) $this->db->like('year', $str);
+    $years_result = $this->db->get()->result();
+    $years = array();
+    foreach($years_result as $row) $years[] = $row->year;
+    return $years;
+  }
+
+  function countries($str = '') {
+    $this->db->select('country')->distinct()->from('items')->order_by('country');
+    if($str) $this->db->like('country', $str);
+    $countries_result = $this->db->get()->result();
+    $countries = array();
+    foreach($countries_result as $row) $countries[] = $row->country;
+    return $countries;
+  }
+
+  function places($str = '') {
+    $this->db->select('place')->distinct()->from('items')->order_by('place');
+    if($str) $this->db->like('place', $str);
+    $places_result = $this->db->get()->result();
+    $places = array();
+    foreach($places_result as $row) $places[] = $row->place;
+    return $places;
+  }
 }

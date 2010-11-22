@@ -7,6 +7,7 @@
     <script src="/js/jquery.cycle.lite.min.js"></script>
     <link rel="stylesheet" href="/css/global.css" type="text/css">
     <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery.autocomplete.css" type="text/css">
   </head>
   <body>
     <?php echo $this->load->view('manage/nav'); ?>

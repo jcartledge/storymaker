@@ -82,4 +82,19 @@ class Item extends Controller {
   function check_video($url) {
     return($url || $this->input->post('video-file'));
   }
+
+  function years() {
+    header('Content-type: application/json');
+    echo json_encode($this->Item_model->years($this->input->get('term')));
+  }
+
+  function countries() {
+    header('Content-type: application/json');
+    return json_encode($this->Item_model->countries($this->input->get('term')));
+  }
+
+  function places() {
+    header('Content-type: application/json');
+    return json_encode($this->Item_model->places($this->input->get('term')));
+  }
 }

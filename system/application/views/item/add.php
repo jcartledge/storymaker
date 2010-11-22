@@ -48,13 +48,13 @@
   <h3>Year, country, place</h3>
   <?php echo form_error('year'); ?>
   <label for="year">Year</label>
-  <input name="year" value="<?php echo set_value('year'); ?>">
+  <input class="year" name="year" value="<?php echo set_value('year'); ?>">
   <?php echo form_error('country'); ?>
   <label for="country">Country</label>
-  <input name="country" value="<?php echo set_value('country'); ?>">
+  <input class="country" name="country" value="<?php echo set_value('country'); ?>">
   <?php echo form_error('place'); ?>
   <label for="place">Place</label>
-  <input name="place" value="<?php echo set_value('place'); ?>">
+  <input class="place" name="place" value="<?php echo set_value('place'); ?>">
 
   <h3>Themes for this item</h3>
   <p>Please select one or more of the following themes:</p>
@@ -77,5 +77,8 @@ $(function(){
     $('.add-item div').slideUp('fast');
     $('.' + this.value + '-item').slideDown('fast');
   });
+  $('.year').autocomplete({source: '/item/years'});
+  $('.country').autocomplete({source: '/item/countries'});
+  $('.place').autocomplete({source: '/item/places'});
 });
 </script>
