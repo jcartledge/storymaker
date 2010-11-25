@@ -2,7 +2,8 @@ html { height: 99; }
 body {
   min-height: 100%;
   position: relative;
-  background: url('/images/SHorangeheader.gif') top left no-repeat;
+  font-family: Ubuntu, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  /*background: url('/images/SHorangeheader.gif') top left no-repeat;*/
 }
 
 #content { width: 700px; margin-left: 100px; padding-bottom: 50px; margin-top: -10px;}
