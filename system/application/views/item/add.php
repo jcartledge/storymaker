@@ -2,7 +2,7 @@
 <form class="add-item" action="" method="post" enctype="multipart/form-data">
   <label for="title">Name the item</label>
   <?php echo form_error('title'); ?>
-  <input name="title" value="<?php echo set_value('title'); ?>"><br>
+  <input class="long" name="title" value="<?php echo set_value('title'); ?>"><br>
 
   <label for="description">Describe the item</label>
   <?php echo form_error('description'); ?>
@@ -22,7 +22,7 @@
   <div class="<?php if($type == 'image') echo 'open-at-start '; ?>image-item">
     <?php echo form_error('image-url'); ?>
     <label for="image-url">Link to an image on the web</label>
-    <input name="image-url" value="<?php echo set_value('image-url'); ?>">
+    <input class="long" name="image-url" value="<?php echo set_value('image-url'); ?>">
     <br>
     <label for="image-file">Or upload an image</label>
     <input type="file" name="image-file">
@@ -39,8 +39,8 @@
   <div class="<?php if($type == 'video') echo 'open-at-start '; ?>video-item">
     <?php echo form_error('video-url'); ?>
     <label for="video-url">Link to a video on the web.</label>
-    <p>This works for youtube and vimeo. Paste the URL of the page containing the video here:</p>
-    <input name="video-url" value="<?php echo set_value('video-url'); ?>">
+    <p>This works for youtube and vimeo.<br>Paste the URL of the page containing the video here:</p>
+    <input class="long" name="video-url" value="<?php echo set_value('video-url'); ?>">
     <br>
     <label for="video-file">Or upload a video</label>
     <input type="file" name="video-file">
@@ -57,25 +57,26 @@
     <label for="country">Country</label>
     <input class="country" name="country" value="<?php echo set_value('country'); ?>">
   </div>
+  <br>
   <div class="place-field">
     <?php echo form_error('place'); ?>
     <label for="place">Place</label>
-    <input class="place" name="place" value="<?php echo set_value('place'); ?>">
+    <input class="place long" name="place" value="<?php echo set_value('place'); ?>">
   </div>
   <br>
 
   <h3>Themes for this item</h3>
+  <?php $has_themes = (isset($themes) && count($themes)); if($has_themes) { ?>
   <fieldgroup class="themes">
-    <?php $has_themes = (isset($themes) && count($themes));
-    if($has_themes) { ?>
     <p>Please select one or more of the following themes:</p>
     <?php foreach($themes as $theme) { ?><label>
     <input type="checkbox" name="themes[]" value="<?php echo $theme; ?>"><?php echo $theme; ?>
-    </label><?php }} ?><p>&nbsp;</p>
+    </label><?php } ?><p>&nbsp;</p>
   </fieldgroup>
+  <?php } ?>
   <p><?php if($has_themes) { ?>Or enter your own<?php } else { ?>Enter some<?php } ?> themes separated by commas:</p>
   <input class="long" name="themes[]">
-
+  <br>
   <?php if(isset($story)) { ?><input type="hidden" name="story_id" value="<?php echo $story->id; ?>"><?php } ?>
   <input type="submit" value="Add this item">
 </form>

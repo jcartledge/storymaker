@@ -17,7 +17,7 @@ function attachment_type($mimetype) {
 }
 
 function attachment_icon($mimetype) {
-  $url = '/images/icons';
+  $url = site_url('images/icons');
   switch(attachment_type($mimetype)) {
   case 'object video':
   case 'youtube video':

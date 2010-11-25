@@ -30,7 +30,7 @@ $(function(){
   });
   $('a.story').live('click', function(){
     var self = $(this);
-    var container = self.next('.item-preview');
+    var container = self.next('.story-preview');
     if(container.length) {
       self.toggleClass('open');
       container.slideToggle();

@@ -34,6 +34,7 @@
     <input type="submit" value="Set layout">
   </form>
   <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1)); ?>
+  <p><a href="<?php echo site_url('story/layout/' . $story->id); ?>">Choose a layout</a>.</p>
 </div>
 <script>
 $(function(){
@@ -87,3 +88,4 @@ $(function(){
   refresh_sortables();
 });
 </script>
+
