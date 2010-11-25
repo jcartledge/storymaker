@@ -43,7 +43,7 @@ class Story extends Controller {
   function add() {
     if(!$this->tank_auth->is_logged_in()) {
       $this->output->set_status_header('401');
-      redirect('');
+      redirect(site_url());
     }
     $this->load->library('form_validation');
     $this->form_validation->set_rules('story-title', 'title', 'required');
@@ -57,7 +57,7 @@ class Story extends Controller {
         'title'       => $_POST['story-title'],
         'description' => $_POST['story-description']
       ));
-      if($story_id) redirect('/story/edit/' . $story_id);
+      if($story_id) redirect(site_url('story/edit/' . $story_id));
     }
     $this->layout->view('story/add');
   }
@@ -70,7 +70,7 @@ class Story extends Controller {
     }
     if(!$authorized) {
       $this->output->set_status_header('401');
-      redirect('');
+      redirect(site_url());
     }
     if(isset($_POST['items'])) {
       $story = $this->Story_model->save_items($id, $_POST['items']);

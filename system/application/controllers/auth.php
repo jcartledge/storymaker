@@ -16,7 +16,7 @@ class Auth extends Controller
 
 	function index()
 	{
-		redirect('/auth/login/');
+		redirect(site_url('auth/login'));
 	}
 
 	/**
@@ -27,10 +27,10 @@ class Auth extends Controller
 	function login()
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
-			redirect('');
+			redirect(site_url());
 
 		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
-			redirect('/auth/send_again/');
+			redirect(site_url('auth/send_again'));
 
 		} else {
 			$data['login_by_username'] = ($this->config->item('login_by_username', 'tank_auth') AND
@@ -65,7 +65,7 @@ class Auth extends Controller
 						$this->form_validation->set_value('remember'),
 						$data['login_by_username'],
 						$data['login_by_email'])) {								// success
-					redirect('/manage');
+					redirect(site_url('manage'));
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
@@ -74,7 +74,7 @@ class Auth extends Controller
 						return;
 
 					} elseif (isset($errors['not_activated'])) {				// not activated user
-						redirect('/auth/send_again/');
+						redirect(site_url('auth/send_again'));
 
 					} else {													// fail
 						foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
@@ -104,7 +104,7 @@ class Auth extends Controller
 		$this->tank_auth->logout();
 
 		$this->_show_message($this->lang->line('auth_message_logged_out'));
-    redirect('/');
+    redirect(site_url());
 	}
 
 	/**
@@ -115,10 +115,10 @@ class Auth extends Controller
 	function register()
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
-			redirect('');
+			redirect(site_url());
 
 		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
-			redirect('/auth/send_again/');
+			redirect(site_url('auth/send_again'));
 
 		} elseif (!$this->config->item('allow_registration', 'tank_auth')) {	// registration is off
 			$this->_show_message($this->lang->line('auth_message_registration_disabled'));
@@ -202,7 +202,7 @@ class Auth extends Controller
 	function send_again()
 	{
 		if (!$this->tank_auth->is_logged_in(FALSE)) {							// not logged in or activated
-			redirect('/auth/login/');
+			redirect(site_url('auth/login'));
 
 		} else {
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
@@ -259,10 +259,10 @@ class Auth extends Controller
 	function forgot_password()
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
-			redirect('');
+			redirect(site_url());
 
 		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
-			redirect('/auth/send_again/');
+			redirect(site_url('auth/send_again'));
 
 		} else {
 			$this->form_validation->set_rules('login', 'Email or login', 'trim|required|xss_clean');
@@ -346,7 +346,7 @@ class Auth extends Controller
 	function change_password()
 	{
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
-			redirect('/auth/login/');
+			redirect(site_url('auth/login'));
 
 		} else {
 			$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean');
@@ -379,7 +379,7 @@ class Auth extends Controller
 	function change_email()
 	{
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
-			redirect('/auth/login/');
+			redirect(site_url('auth/login'));
 
 		} else {
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
@@ -439,7 +439,7 @@ class Auth extends Controller
 	function unregister()
 	{
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
-			redirect('/auth/login/');
+			redirect(site_url('auth/login'));
 
 		} else {
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');

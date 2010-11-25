@@ -8,7 +8,7 @@ class Manage extends Controller {
     $this->load->library('tank_auth');
     if(!$this->tank_auth->is_logged_in()) {
       $this->output->set_status_header('401');
-      redirect('');
+      redirect(site_url());
     }
     $this->load->model('Story_model', '', TRUE);
     $this->load->model('Item_model', '', TRUE);

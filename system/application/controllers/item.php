@@ -28,7 +28,7 @@ class Item extends Controller {
   function add() {
     if(!$this->tank_auth->is_logged_in()) {
       $this->output->set_status_header('401');
-      redirect('');
+      redirect(site_url());
     }
     $this->load->library('form_validation');
     $this->form_validation->set_rules('title', 'title', 'required');
@@ -53,7 +53,7 @@ class Item extends Controller {
     }
     if($this->form_validation->run()) {
       $item_id = $this->Item_model->save();
-      if($item_id) redirect('/manage');
+      if($item_id) redirect(site_url('manage'));
     }
     $data['themes'] = $this->Item_model->get_all_themes();
     $data['type'] = isset($_POST['type']) ? $_POST['type'] : '';
