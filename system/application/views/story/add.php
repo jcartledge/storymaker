@@ -1,4 +1,4 @@
-<form class="add-story" action="/story/add" method="post">
+<form class="add-story" action="<?php echo site_url('story/add'); ?>" method="post">
   <h2>Build a story</h2>
   Give your story a name
   <fieldset>

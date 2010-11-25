@@ -1,5 +1,5 @@
 $(function(){
-    $('body').append('<div class="loading" style="position:absolute; top:0; left:0; width:100%; height:100%; background-color:#333; opacity:0.9;"><img src="/images/ajax-loader.gif"></div>');
+    $('body').append('<div class="loading" style="position:absolute; top:0; left:0; width:100%; height:100%; background-color:#333; opacity:0.9;"><img src="' + window.base_url + '/images/ajax-loader.gif"></div>');
     $('.loading img').centerInClient();
   var ww = $(window).width(), wh = $(window).height();
   $('.item-attachment img').hide().each(function() {

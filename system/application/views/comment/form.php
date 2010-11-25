@@ -1,4 +1,4 @@
-<form class="comment-form" action="/comment/post/<?php echo $story_id; ?>" method="post">
+<form class="comment-form" action="<?php echo site_url('comment/post/' . $story_id); ?>" method="post">
   <h3>Add a comment</h3>
   <p>
     <label for="commenter">Your name:</label>

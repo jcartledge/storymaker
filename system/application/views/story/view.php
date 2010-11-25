@@ -8,4 +8,4 @@
   </div>
   <?php echo $this->load->view('story/pager', array('story' => $story, 'class' => 'bottom')); ?>
 </div>
-<a class="comments-link" href="/comment/story/<?php echo $story->id; ?>">Comments</a>
+<a class="comments-link" href="<?php echo site_url('comment/story/' . $story->id); ?>">Comments</a>

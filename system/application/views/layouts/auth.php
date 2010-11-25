@@ -2,12 +2,12 @@
   <head>
     <title><?php echo isset($title) ? $title : 'Small Histories'; ?></title>
     <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
-    <script src="/js/jquery-ui-1.8.6.custom.min.js"></script>
-    <link rel="stylesheet" href="/css/global.css" type="text/css">
-    <link rel="stylesheet" href="/css/auth.css" type="text/css">
+    <script src="<?php echo site_url('js/jquery-ui-1.8.6.custom.min.js'); ?>"></script>
+    <link rel="stylesheet" href="<?php echo site_url('css/global.css'); ?>" type="text/css">
+    <link rel="stylesheet" href="<?php echo site_url('css/auth.css'); ?>" type="text/css">
   </head>
   <body>
-    <h1><a href="/">Small Histories</a></h1>
+    <h1><a href="<?php echo site_url(''); ?>">Small Histories</a></h1>
     <div id="content">
       <?php echo $content_for_layout; ?>
     </div>

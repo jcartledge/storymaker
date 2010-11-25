@@ -1,7 +1,7 @@
 $(function() {
   $('.comments-link')
     .css({position: 'fixed', top: '40%', right: '0px'})
-    .html('<img src="/images/comments-tab.png">')
+    .html('<img src="' + window.base_url + '/images/comments-tab.png">')
     .after('<div class="comments-container" style="background: white; border-left: 2px solid #BBB; width:400px; height:100%; position:fixed; top:0px; right:-400px; overflow:scroll; "/>')
     .click(function() {
       $(this).css({'z-index': 10000});

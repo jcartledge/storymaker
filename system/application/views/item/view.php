@@ -1,5 +1,5 @@
 <div class="story-item" id="<?php echo $item->id; ?>">
-    <h3 class="item-title"><img src="/images/book.gif"> <?php echo $item->title; ?></h3>
+    <h3 class="item-title"><img src="<?php echo site_url('images/book.gif'); ?>"> <?php echo $item->title; ?></h3>
     <?php if($item->attachment) { ?><div <?php if (isset($story) && $story->layout == 'scrapbook' && !is_null($item->pos_x)) { ?>
       style="position:absolute; left:<?php echo $item->pos_x; ?>px; top:<?php echo $item->pos_y; ?>;"<?php } ?>
       class="item-attachment">
