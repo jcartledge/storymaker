@@ -1,5 +1,5 @@
 <?php $this->load->helper(array('icon', 'item')); ?>
-<?php if(!isset($hide_pager) && count($items) && (count($items) < $num_items)) {
+<?php if(!isset($hide_pager) && (count($items) )) {
   $data = array('page_size' => $page_size, 'num_items' => $num_items);
   if(isset($username)) $data['username'] = $username;
   echo $this->load->view('item/pager', $data);

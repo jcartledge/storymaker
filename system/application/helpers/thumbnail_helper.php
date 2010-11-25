@@ -1,7 +1,7 @@
 <?php
-
+//print_r($_SERVER);
 function thumbnail_url($image_url) {
-  $filespec = dirname($_SERVER['SCRIPT_FILENAME']) . $image_url;
+  $filespec = $_SERVER['DOCUMENT_ROOT'] . $image_url;
   if(!file_exists($filespec)) {
     // @TODO: handle remote thumb here
     return '/images/not-found.gif';
@@ -22,6 +22,6 @@ function thumbnail_url($image_url) {
     $ci->image_lib->initialize($config);
     $ci->image_lib->resize();
   }
-  return str_replace(dirname($_SERVER['SCRIPT_FILENAME']), '', $thumb_filespec);
+  return str_replace($_SERVER['DOCUMENT_ROOT'], '', $thumb_filespec);
 }
 
