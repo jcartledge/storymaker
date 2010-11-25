@@ -111,8 +111,8 @@ class Item_model extends Model {
     if(!is_array($file) || $file['error'] != 0) return;
     $type = attachment_type($file['type']);
     if(!isset($type)) return;
-    $save_as = "/attachments/{$type}/{$file[name]}";
-    if(!move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $save_as)) return;
+    $save_as = dirname($_SERVER['SCRIPT_FILENAME']) . "/attachments/{$type}/{$file['name']}";
+    if(!move_uploaded_file($file['tmp_name'], $save_as)) return;
     return $save_as;
   }
 

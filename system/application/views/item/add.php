@@ -47,19 +47,19 @@
   </div>
 
   <h3>Year, country, place</h3>
+  <?php echo form_error('year'); ?>
+  <?php echo form_error('country'); ?>
   <div class="year-field">
-    <?php echo form_error('year'); ?>
     <label for="year">Year</label>
     <input class="year" name="year" value="<?php echo set_value('year'); ?>">
   </div>
   <div class="country-field">
-    <?php echo form_error('country'); ?>
     <label for="country">Country</label>
     <input class="country" name="country" value="<?php echo set_value('country'); ?>">
   </div>
   <br>
+  <?php echo form_error('place'); ?>
   <div class="place-field">
-    <?php echo form_error('place'); ?>
     <label for="place">Place</label>
     <input class="place long" name="place" value="<?php echo set_value('place'); ?>">
   </div>
