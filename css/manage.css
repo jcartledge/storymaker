@@ -4,16 +4,17 @@
   margin-left: 10px;
   margin-right: 10px;
   float: left;
-  border: 2px solid gray;
+  border: 2px solid silver;
 }
 .items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
 a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }
-.items li, .stories li { text-indent: 1em; }
+.pager, .items li, .stories li { text-indent: 1em; border-top: 1px solid #ccc; }
 .story-preview a { width: 100%: text-align: right; }
 
 .items h2, .stories h2 {
   margin-left: 0.5em;
 }
+
 
 .items .add-item, .stories .add-story,
 .items p, .stories p { text-indent: 1em; }

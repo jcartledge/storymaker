@@ -14,15 +14,16 @@ $(function(){
     var self = $(this);
     var container = self.next('.item-preview');
     if(container.length) {
-      self.toggleClass('open');
+      $('.item-preview').not(container).slideUp();
       container.slideToggle();
     } else {
       self.addClass('loading');
-      container = $('<div class="item-preview" visibility="hidden">');
-      container.insertAfter(self).load(this.href, [], function(){
+      container = $('<div class="item-preview">');
+      container.load(this.href, [], function(){
+        $(this).hide().insertAfter(self)
         self.removeClass('loading');
-        self.addClass('open');
-        container.slideDown('slow');
+        $('.item-preview').slideUp();
+        $(this).slideDown();
         $('.item-attachment a').lightBox();
       });
     }
@@ -32,15 +33,18 @@ $(function(){
     var self = $(this);
     var container = self.next('.story-preview');
     if(container.length) {
-      self.toggleClass('open');
+      console.log('toggle');
+      $('.story-preview').not(container).slideUp();
       container.slideToggle();
     } else {
       self.addClass('loading');
-      container = $('<div class="story-preview" visibility="hidden">');
-      container.insertAfter(self).load(this.href.replace(/view/, 'preview') + ' .story-preview', [], function(){
+      container = $('<div class="story-preview">');
+      container.load(this.href.replace(/view/, 'preview') + ' .story-preview>*', [], function(){
+        console.log('load');
+        $(this).hide().insertAfter(self);
         self.removeClass('loading');
-        self.addClass('open');
-        container.slideDown('slow');
+        $('.story-preview').slideUp();
+        $(this).slideDown();
       });
     }
     return false;
