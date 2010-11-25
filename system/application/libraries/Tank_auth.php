@@ -65,7 +65,7 @@ class Tank_auth
 				//$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
 				//if ($hasher->CheckPassword($password, $user->password)) {		// password ok
         if(md5($password) == $user->password) {
-					if ($user->banned == 1) {									// fail - banned
+					if (isset($user->banned) && $user->banned == 1) {									// fail - banned
 						$this->error = array('banned' => $user->ban_reason);
 
 					} else {
