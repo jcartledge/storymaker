@@ -4,7 +4,7 @@
   <?php echo form_error('story-title'); ?>
   <input class="long" name="story-title" value="<?php echo set_value('story-title'); ?>">
   <br>
-  <label for="story-description">Please give a brief description of the story</label>
+  <label for="story-description">Please provide a brief description of the story</label>
   <?php echo form_error('story-description'); ?>
   <textarea name="story-description"><?php echo set_value('story-description'); ?></textarea>
   <br>
