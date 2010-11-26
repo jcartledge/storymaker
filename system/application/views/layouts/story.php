@@ -1,6 +1,9 @@
+<!DOCTYPE HTML>
 <html>
   <head>
-  <script>window.base_url = "<?php echo base_url(); ?>";</script>
+    <title><?php echo isset($title) ? $title : 'Small Histories'; ?></title>
+    <meta charset="utf-8">
+    <script>window.base_url = "<?php echo base_url(); ?>";</script>
     <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
     <script src="<?php echo site_url('js/jquery-ui-1.8.6.custom.min.js'); ?>"></script>
     <script src="<?php echo site_url('js/jquery.lightbox-0.5.pack.js'); ?>"></script>
@@ -17,7 +20,6 @@
     <link rel="stylesheet" href="<?php echo site_url('css/story.css'); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo site_url('css/jquery.lightbox-0.5.css'); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo site_url('css/layouts/' . $story->layout . '.css'); ?>" type="text/css">
-    <title><?php echo isset($title) ? $title : 'Small Histories'; ?></title>
   </head>
   <body class="story-page <?php echo $story->layout; ?>-layout">
     <?php echo $this->load->view('manage/nav'); ?>
