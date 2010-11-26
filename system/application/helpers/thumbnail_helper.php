@@ -4,6 +4,7 @@ function thumbnail_url($image_url) {
   $filespec = $_SERVER['DOCUMENT_ROOT'] . $image_url;
   if(!file_exists($filespec)) {
     // @TODO: handle remote thumb here
+    // @FIXME: not portable
     return '/images/not-found.gif';
   }
   $thumb_dir = dirname($filespec) . DIRECTORY_SEPARATOR . 'thumbs';
