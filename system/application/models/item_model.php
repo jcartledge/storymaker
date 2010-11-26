@@ -56,11 +56,11 @@ class Item_model extends Model {
     $data['year'] = $this->input->post('year');
     $data['place'] = $this->input->post('place');
     //mimetype
-    if($_FILES['image-file']['type']) {
+    if(isset($_FILES['image-file']['type']) && $_FILES['image-file']['type']) {
       $attachment = $_FILES['image-file'];
-    } elseif($_FILES['document-file']['type']) {
+    } elseif(isset($_FILES['document-file']['type']) && $_FILES['document-file']['type']) {
       $attachment = $_FILES['document-file'];
-    } elseif($_FILES['video-file']['type']) {
+    } elseif(isset($_FILES['video-file']['type']) $_FILES['video-file']['type']) {
       $attachment = $_FILES['video-file'];
     }
     if(isset($attachment)) {
