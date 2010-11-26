@@ -4,7 +4,6 @@
   <input type="submit" value="Filter">
 </form>
 <form class="edit-story" action="" method="post">
-  <fieldset>
   <h3>Add items to your story</h3>
     <?php if(count($items) < $num_items) {
       echo $this->load->view('item/pager', array('page_size' => $page_size, 'num_items' => $num_items));
@@ -17,10 +16,9 @@
       </li>
     <?php } ?></ul>
     <input type="submit" value="Add to story">
-  </fieldset>
   <!-- new item form here -->
 </form>
-<div class="edit-story-items">
+<div class="edit-story-items items">
   <h3><?php echo count($story->items); ?> item<?php if(count($story->items) != 1) echo 's'; ?> in <em><?php echo $story->title; ?></em></h3>
   <form class="edit-story-layout" method="post" action="">
     <?php echo form_dropdown('layout', array(
