@@ -5,7 +5,6 @@
 </form>
 <form class="edit-story" action="" method="post">
   <h3>Add items to your story</h3>
-    <a class="add-item" href="<?php echo site_url('item/add/' . $story->id); ?>"><?php echo icon('add'); ?>Add a new item</a>
     <?php echo $this->load->view('item/pager', array('page_size' => $page_size, 'num_items' => $num_items)); ?>
     <ul class="items"><?php foreach($items as $item) {?>
       <li>
@@ -31,6 +30,7 @@
     <input type="submit" value="Set layout">
     <a href="<?php echo site_url('story/layout/' . $story->id); ?>">Choose a layout</a>.
   </form>
+  <a class="add-item" href="<?php echo site_url('item/add/' . $story->id); ?>"><?php echo icon('add'); ?>Add a new item</a>
   <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1)); ?>
 </div>
 <script>
