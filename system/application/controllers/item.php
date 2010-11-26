@@ -31,11 +31,12 @@ class Item extends Controller {
       redirect(site_url());
     }
     $this->load->library('form_validation');
+    $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
     $this->form_validation->set_rules('title', 'title', 'required');
     $this->form_validation->set_rules('title', 'title-unique', 'callback_check_title');
     $this->form_validation->set_message('check_title', 'There is already an item with this title - please choose another.');
     $this->form_validation->set_rules('type', 'type', 'required');
-    $this->form_validation->set_rules('year', 'year', 'numeric|exact_length[4]');
+    $this->form_validation->set_rules('year', 'year', 'numeric|max_length[4]');
     if(isset($_POST['type'])) switch($_POST['type']) {
       case 'text':
         $this->form_validation->set_rules('content', 'text', 'required');

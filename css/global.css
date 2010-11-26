@@ -1,4 +1,4 @@
-html { height: 99; }
+html { height: 97%; }
 body {
   min-height: 100%;
   position: relative;
@@ -33,7 +33,7 @@ dd { margin: 0; float: left; }
   text-align: right;
 }
 
-.footer { position: absolute; bottom: 10; left: 100px; }
+.footer { position: absolute; bottom: 20px; left: 100px; }
 .search-form input, input[type=checkbox] { display: inline; }
 label, input, textarea { display: block; }
 input.long { width: 440px; }
@@ -48,17 +48,27 @@ form .error { width: 250px; float: right; margin-right: 100px; }
 .edit-story h3 { margin:0; margin-bottom: 3em; }
 ul, li { padding: 0; margin: 0; list-style-type: none; }
 .edit-story input { float: right; }
+.edit-story {
+  position: absolute;
+  top: 90px;
+  width: 326px;
+  margin-left: 10px;
+  margin-right: 10px;
+  float: left;
+  border: 2px solid silver;
+}
 .edit-story-items {
   position: absolute;
   top: 90px;
   left: 460px;
   width: 330px;
-  border: 2px solid gray;
-  padding-left: 10px;
+  border: 2px solid silver;
 }
-.edit-story-items h3 { margin: 0; margin-top: 0.3em; margin-bottom: 3em; }
-.edit-story-items ul, .edit-story-items li { padding: 0; margin: 0; margin-right: 0.25em; list-style-type: none; }
-img.icon { float: right; margin: 8px; }
+.edit-story h3, .edit-story-items h3 { margin: 0; margin-left: 0.5em; margin-top: 0.3em; margin-bottom: 3em; }
+img.icon { float: right; margin: 8px; border: none;}
+.items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
+.edit-story-layout, a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }
+.edit-story-layout, .pager, .items li, .stories li { text-indent: 1em; border-top: 1px solid #ccc; }
 
 div.text-item, div.image-item, div.document-item, div.video-item {
   width: 410px;
@@ -82,3 +92,10 @@ textarea { width: 440px; height: 120px; }
 .video-item input.long {
   width: 410px;
 }
+
+.add-item .error { width: 440px; float: none; clear: left; color: red; }
+.required { color: red; }
+
+.item-preview { max-height: 250px; overflow: hidden; }
+.item-preview .item-title { display:none; }
+.item-preview img, .item-preview embed, .item-preview iframe { max-width: 300px; max-height: 200px; }

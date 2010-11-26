@@ -34,14 +34,12 @@ $(function(){
     var self = $(this);
     var container = self.next('.story-preview');
     if(container.length) {
-      console.log('toggle');
       $('.story-preview').not(container).slideUp();
       container.slideToggle();
     } else {
       self.addClass('loading');
       container = $('<div class="story-preview">');
       container.load(this.href.replace(/view/, 'preview') + ' .story-preview>*', [], function(){
-        console.log('load');
         $(this).hide().insertAfter(self);
         self.removeClass('loading');
         $('.story-preview').slideUp();

@@ -1,11 +1,9 @@
 <?php
-//print_r($_SERVER);
+
 function thumbnail_url($image_url) {
-  $filespec = $_SERVER['DOCUMENT_ROOT'] . $image_url;
-  if(!file_exists($filespec)) {
-    // @TODO: handle remote thumb here
-    return '/images/not-found.gif';
-  }
+  if(preg_match('/^http[s]?:\/\//', $image_url)) return $image_url;
+  $filespec = str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'] . '/' . $image_url);
+  if(!file_exists($filespec)) return site_url('images/not-found.gif');
   $thumb_dir = dirname($filespec) . DIRECTORY_SEPARATOR . 'thumbs';
   if(!is_dir($thumb_dir)) mkdir($thumb_dir, 0777, TRUE);
   $thumb_filespec = $thumb_dir . DIRECTORY_SEPARATOR . basename($image_url);
@@ -24,4 +22,3 @@ function thumbnail_url($image_url) {
   }
   return str_replace($_SERVER['DOCUMENT_ROOT'], '', $thumb_filespec);
 }
-

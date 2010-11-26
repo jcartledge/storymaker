@@ -112,8 +112,8 @@ class Item_model extends Model {
     $type = attachment_type($file['type']);
     if(!isset($type)) return;
     $save_as = dirname($_SERVER['SCRIPT_FILENAME']) . "/attachments/{$type}/{$file['name']}";
-    if(!move_uploaded_file($file['tmp_name'], $save_as)) return;
-    return str_replace($_SERVER['DOCUMENT_ROOT'], '', $save_as);
+    if(!move_uploaded_file($file['tmp_name'], $save_as)) die($file['tmp_name']);
+    return str_replace('//', '', '/' . str_replace($_SERVER['DOCUMENT_ROOT'], '', $save_as));
   }
 
   private function begin_search_query($str = '', $limit = 0, $story_id = NULL, $user_id = NULL) {
