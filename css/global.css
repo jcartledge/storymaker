@@ -82,3 +82,6 @@ textarea { width: 440px; height: 120px; }
 .video-item input.long {
   width: 410px;
 }
+
+.add-item .error { width: 440px; float: none; clear: left; color: red; }
+.required { color: red; }

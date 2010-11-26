@@ -18,3 +18,7 @@ a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2
 
 .items .add-item, .stories .add-story,
 .items p, .stories p { text-indent: 1em; }
+
+.item-preview { max-height: 250px; overflow: hidden; }
+.item-preview .item-title { display:none; }
+.item-preview img { max-width: 200px; max-height: 200px; }

@@ -1,10 +1,11 @@
 <h2>Add an item</h2>
+<p>Required fields are marked with a <span class="required">*</span>.</p>
 <form class="add-item" action="" method="post" enctype="multipart/form-data">
-  <label for="title">Name the item</label>
+  <label for="title">Name the item <span class="required">*</span></label>
   <?php echo form_error('title'); ?>
   <input class="long" name="title" value="<?php echo set_value('title'); ?>"><br>
 
-  <label for="description">Describe the item</label>
+  <label for="description">Describe the item <span class="required">*</span></label>
   <?php echo form_error('description'); ?>
   <textarea name="description"><?php echo set_value('description'); ?></textarea><br>
 

@@ -112,7 +112,7 @@ class Item_model extends Model {
     $type = attachment_type($file['type']);
     if(!isset($type)) return;
     $save_as = dirname($_SERVER['SCRIPT_FILENAME']) . "/attachments/{$type}/{$file['name']}";
-    if(!move_uploaded_file($file['tmp_name'], $save_as)) return;
+    if(!move_uploaded_file($file['tmp_name'], $save_as)) die($file['tmp_name']);
     return str_replace($_SERVER['DOCUMENT_ROOT'], '', $save_as);
   }
 
