@@ -87,6 +87,18 @@ class Story extends Controller {
     $this->layout->view('story/edit', $data);
   }
 
+  function delete($id) {
+    if($_POST) {
+      $this->Story_model->delete($id);
+      //set message?
+      if(isset($_POST['url'])) redirect($_POST['url']);
+    } else {
+      $data['story'] = $this->Story_model->load($id);
+      $data['url'] = $_SERVER['HTTP_REFERER'];
+      $this->layout->view('story/delete', $data);
+    }
+  }
+
   function remove($story_id, $item_id) {
     $this->Story_model->remove_item($story_id, $item_id);
     redirect($_SERVER['HTTP_REFERER']);

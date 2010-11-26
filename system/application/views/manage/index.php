@@ -6,11 +6,11 @@
 <div class="stories">
   <h2>My stories</h2>
   <a class="add-story" href="<?php echo site_url('story/add'); ?>"><?php echo icon('add'); ?> Add a story</a>
-  <?php echo $this->load->view('story/manage-list', array('stories' => $stories, 'actions' => array('edit'))); ?>
+  <?php echo $this->load->view('story/manage-list', array('stories' => $stories, 'actions' => array('delete', 'edit'))); ?>
 </div>
 <script>
 $(function(){
-  $('img.icon').tooltip({ showURL: false });
+  $('img.icon').tooltip({ showURL:false });
   $('a.item').live('click', function(){
     var self = $(this);
     var container = self.next('.item-preview');

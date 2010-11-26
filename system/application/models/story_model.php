@@ -99,6 +99,11 @@ class Story_model extends Model {
     return $this->load($id, 0);
   }
 
+  function delete($story_id) {
+    $this->db->delete('items_stories', array('story_id' => $story_id));
+    $this->db->delete('stories', array('id' => $story_id));
+  }
+
   private function max_item_story_position($story_id) {
     $this->sort_items_stories($story_id);
     $q = $this->db->query("SELECT MAX(position) AS pos FROM items_stories WHERE story_id = $story_id");
