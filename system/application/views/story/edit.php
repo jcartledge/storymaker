@@ -5,9 +5,7 @@
 </form>
 <form class="edit-story" action="" method="post">
   <h3>Add items to your story</h3>
-    <?php if(count($items) < $num_items) {
-      echo $this->load->view('item/pager', array('page_size' => $page_size, 'num_items' => $num_items));
-    } ?>
+    <?php echo $this->load->view('item/pager', array('page_size' => $page_size, 'num_items' => $num_items)); ?>
     <ul class="items"><?php foreach($items as $item) {?>
       <li>
         <input type="checkbox" name="items[]" value="<?php echo $item->id; ?>">
