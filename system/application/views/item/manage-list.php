@@ -12,4 +12,3 @@
   </li><?php } ?>
   <?php if(!count($items)) { ?><li>You have no items to display.</li><?php } ?>
 </ul>
-
