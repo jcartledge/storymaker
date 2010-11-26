@@ -50,15 +50,17 @@ $(function(){
     var self = $(this);
     var container = self.next('.item-preview');
     if(container.length) {
-      self.toggleClass('open');
+      $('.item-preview').not(container).slideUp();
       container.slideToggle();
     } else {
       self.addClass('loading');
-      container = $('<div class="item-preview" visibility="hidden">');
-      container.insertAfter(self).load(this.href, [], function(){
+      container = $('<div class="item-preview">');
+      container.load(this.href, [], function(){
+        $(this).hide().insertAfter(self)
         self.removeClass('loading');
-        self.addClass('open');
-        container.slideDown('slow');
+        $('.item-preview').slideUp();
+        $(this).slideDown();
+        $('.item-attachment a').lightBox();
       });
     }
     return false;

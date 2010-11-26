@@ -85,3 +85,7 @@ textarea { width: 440px; height: 120px; }
 
 .add-item .error { width: 440px; float: none; clear: left; color: red; }
 .required { color: red; }
+
+.item-preview { max-height: 250px; overflow: hidden; }
+.item-preview .item-title { display:none; }
+.item-preview img, .item-preview embed { max-width: 300px; max-height: 200px; }
