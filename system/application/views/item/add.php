@@ -84,9 +84,35 @@
 
 <script>
 $(function(){
+  $.fn.fix_radios = function() {
+    function focus() {
+      // if this isn't checked then no option is yet selected. bail
+      if ( !this.checked ) return;
+      // if this wasn't already checked, manually fire a change event
+      if ( !this.was_checked ) {
+        $( this ).change();
+      }
+    }
+
+    function change( e ) {
+      // shortcut if already checked to stop IE firing again
+      if ( this.was_checked ) {
+        e.stopImmediatePropagation();
+        return;
+      }
+      // reset all the was_checked properties
+      $( "input[name=" + this.name + "]" ).each( function() {
+        this.was_checked = this.checked;
+      } );
+    }
+    // attach the handlers and return so chaining works
+    return this.focus( focus ).change( change );
+  }
+  // attach it to all radios on document ready
+  $( "input[type=radio]" ).fix_radios();
   var item_divs = $('div.text-item, div.image-item, div.document-item, div.video-item')
     item_divs.not('.open-at-start').hide();
-  $('.add-item input[name=type]').change(function(){
+  $(':radio').change(function(){
     item_divs.slideUp('fast');
     $('.' + this.value + '-item').slideDown('fast');
   });
