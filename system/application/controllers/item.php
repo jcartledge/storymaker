@@ -25,7 +25,7 @@ class Item extends Controller {
     $this->load->view('item/view', $data);
   }
 
-  function add() {
+  function add($story_id = NULL) {
     if(!$this->tank_auth->is_logged_in()) {
       $this->output->set_status_header('401');
       redirect(site_url());
@@ -52,10 +52,14 @@ class Item extends Controller {
     }
     if($this->form_validation->run()) {
       $item_id = $this->Item_model->save();
-      if($item_id) redirect(site_url('manage'));
+      if($item_id) {
+        if($this->input->post('story_id')) redirect(site_url('story/edit/' . $this->input->post('story_id')));
+        redirect(site_url('manage'));
+      }
     }
     $data['themes'] = $this->Item_model->get_all_themes();
     $data['type'] = isset($_POST['type']) ? $_POST['type'] : '';
+    $data['story'] = $this->Story_model->load($story_id);
     $this->layout->view('item/add', $data);
   }
 

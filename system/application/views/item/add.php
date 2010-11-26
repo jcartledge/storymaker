@@ -1,4 +1,5 @@
 <h2>Add an item</h2>
+<?php if($story) { ?><p>This item will be added to the story <em><?php echo $story->title; ?></em><?php } ?>
 <p>Required fields are marked with a <span class="required">*</span>.</p>
 <form class="add-item" action="" method="post" enctype="multipart/form-data">
   <label for="title">Name the item <span class="required">*</span></label>
@@ -78,7 +79,7 @@
   <p><?php if($has_themes) { ?>Or enter your own<?php } else { ?>Enter some<?php } ?> themes separated by commas:</p>
   <input class="long" name="themes[]">
   <br>
-  <?php if(isset($story)) { ?><input type="hidden" name="story_id" value="<?php echo $story->id; ?>"><?php } ?>
+  <?php if($story) { ?><input type="hidden" name="story_id" value="<?php echo $story->id; ?>"><?php } ?>
   <input type="submit" value="Add this item">
 </form>
 

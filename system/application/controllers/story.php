@@ -63,6 +63,7 @@ class Story extends Controller {
   }
 
   function edit($id) {
+    $this->load->helper('icon');
     $authorized = FALSE;
     if($this->tank_auth->is_logged_in()) {
       $story = $this->Story_model->load($id, 0);

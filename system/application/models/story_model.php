@@ -58,6 +58,7 @@ class Story_model extends Model {
     $this->begin_basic_stories_query();
     $this->db->where(array('stories.id' => $id));
     $story = array_pop($this->db->get()->result());
+    if(!$story) return $story;
     if($story->layout == 'default') $story->layout = 'narrative';
     if($story->layout == 'slideshow' || $story->layout == 'shoebox') {
       $story->page = 0;
@@ -89,7 +90,7 @@ class Story_model extends Model {
       $this->db->delete('items_stories', array('story_id' => $id));
     }
     $position = $this->next_item_story_position($id);
-    foreach($items as $item_id) {
+    foreach((array)$items as $item_id) {
       $item_story = array('story_id' => $id, 'item_id' => $item_id);
       if(!$this->item_story_exists($item_story)) {
         $item_story['position'] = $position++;

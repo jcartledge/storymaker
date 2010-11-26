@@ -88,14 +88,24 @@ class Item_model extends Model {
     if($id) {
       $this->db->where('id', $id);
       $this->db->update('items', $data);
+      //$this->save_themes($this->input->post('themes'), $item_id);
       return $this->load($id);
     } else {
       $this->db->insert('items', $data);
       $item_id = $this->db->insert_id();
-      if($this->input->post('themes')) foreach($this->input->post('themes') as $theme) {
-        $this->save_theme($theme, $item_id);
+      $this->save_themes($this->input->post('themes'), $item_id);
+      if($this->input->post('story_id')) {
+        $this->load->model('Story_model');
+        $this->Story_model->save_items($this->input->post('story_id'), $item_id);
       }
       return $item_id;
+    }
+  }
+
+  private function save_themes($themes, $item_id) {
+    if(!$themes) return;
+    foreach($themes as $theme_chunk) foreach(explode(',', $theme_chunk) as $theme){
+      $this->save_theme(trim($theme), $item_id);
     }
   }
 
