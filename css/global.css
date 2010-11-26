@@ -98,4 +98,4 @@ textarea { width: 440px; height: 120px; }
 
 .item-preview { max-height: 250px; overflow: hidden; }
 .item-preview .item-title { display:none; }
-.item-preview img, .item-preview embed { max-width: 400px; max-height: 200px; }
+.item-preview img, .item-preview embed, .item-preview iframe { max-width: 350px; max-height: 200px; }
