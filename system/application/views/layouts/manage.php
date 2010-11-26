@@ -6,10 +6,12 @@
     <script src="<?php echo site_url('js/instant.js'); ?>"></script>
     <script src="<?php echo site_url('js/jquery.cycle.lite.min.js'); ?>"></script>
     <script src="<?php echo site_url('js/jquery.lightbox-0.5.pack.js'); ?>"></script>
+    <script src="<?php echo site_url('js/jquery.tooltip.min.js'); ?>"></script>
     <link rel="stylesheet" href="<?php echo site_url('css/global.css'); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo site_url('css/manage.css'); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo site_url('css/main.css'); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo site_url('css/jquery.lightbox-0.5.css'); ?>"></script>
+    <link rel="stylesheet" href="<?php echo site_url('css/jquery.tooltip.css'); ?>"></script>
   </head>
   <body>
     <?php echo $this->load->view('manage/nav'); ?>

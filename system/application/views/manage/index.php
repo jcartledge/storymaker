@@ -10,6 +10,7 @@
 </div>
 <script>
 $(function(){
+  $('img.icon').tooltip({ showURL: false });
   $('a.item').live('click', function(){
     var self = $(this);
     var container = self.next('.item-preview');
