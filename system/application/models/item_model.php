@@ -60,7 +60,7 @@ class Item_model extends Model {
       $attachment = $_FILES['image-file'];
     } elseif(isset($_FILES['document-file']['type']) && $_FILES['document-file']['type']) {
       $attachment = $_FILES['document-file'];
-    } elseif(isset($_FILES['video-file']['type']) $_FILES['video-file']['type']) {
+    } elseif(isset($_FILES['video-file']['type']) && $_FILES['video-file']['type']) {
       $attachment = $_FILES['video-file'];
     }
     if(isset($attachment)) {
