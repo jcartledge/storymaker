@@ -87,7 +87,7 @@ div.text-item, div.image-item, div.document-item, div.video-item {
 .pager .next { float: right; }
 
 textarea { width: 440px; height: 120px; }
-.text-item textarea { width: 410px; height: 220px; }
+.text-item textarea { width: 410px; min-height: 220px; }
 .image-item input.long,
 .video-item input.long {
   width: 410px;

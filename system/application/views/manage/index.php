@@ -1,7 +1,7 @@
 <div class="items">
   <h2>My items</h2>
   <a class="add-item" href="<?php echo site_url('item/add'); ?>"><?php echo icon('add'); ?> Add an item</a>
-  <?php echo $this->load->view('item/manage-list', array('items' => $items, 'actions' => array('delete'))); ?>
+  <?php echo $this->load->view('item/manage-list', array('items' => $items, 'actions' => array('delete', 'edit'))); ?>
 </div>
 <div class="stories">
   <h2>My stories</h2>
@@ -10,7 +10,7 @@
 </div>
 <script>
 $(function(){
-  $('img.icon').tooltip({ showURL:false });
+  $('img.icon').tooltip({ showURL:false, top: -40 });
   $('a.item').live('click', function(){
     var self = $(this);
     var container = self.next('.item-preview');

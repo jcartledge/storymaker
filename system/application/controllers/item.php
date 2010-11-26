@@ -33,8 +33,6 @@ class Item extends Controller {
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
     $this->form_validation->set_rules('title', 'title', 'required');
-    $this->form_validation->set_rules('title', 'title-unique', 'callback_check_title');
-    $this->form_validation->set_message('check_title', 'There is already an item with this title - please choose another.');
     $this->form_validation->set_rules('type', 'type', 'required');
     $this->form_validation->set_rules('year', 'year', 'numeric|max_length[4]');
     if(isset($_POST['type'])) switch($_POST['type']) {
@@ -61,6 +59,34 @@ class Item extends Controller {
     $this->layout->view('item/add', $data);
   }
 
+  function edit($id) {
+    $authorized = FALSE;
+    if($this->tank_auth->is_logged_in()) {
+      $item = $this->Item_model->load($id, 0);
+      $authorized = ($item->user_id == $this->tank_auth->get_user_id());
+    }
+    if(!$authorized) {
+      $this->output->set_status_header('401');
+      redirect(site_url());
+    }
+    $this->load->library('form_validation');
+    $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+    $this->form_validation->set_rules('title', 'title', 'required');
+    $this->form_validation->set_rules('type', 'type', 'required');
+    $this->form_validation->set_rules('year', 'year', 'numeric|max_length[4]');
+    if($this->input->post('type') == 'text') {
+      $this->form_validation->set_rules('content', 'text', 'required');
+    }
+    if($this->form_validation->run()) {
+      $item_id = $this->Item_model->save($id);
+      if($item_id) redirect(site_url('manage'));
+    }
+    $data = array();
+    $data['item'] = $item;
+    $data['type'] = $item->type;
+    $this->layout->view('item/edit', $data);
+  }
+
   function delete($id) {
     if($_POST) {
       $this->Item_model->delete($id);
@@ -71,9 +97,6 @@ class Item extends Controller {
       $data['url'] = $_SERVER['HTTP_REFERER'];
       $this->layout->view('item/delete', $data);
     }
-  }
-  function check_title($title) {
-    return $this->Item_model->check_title($title);
   }
 
   function check_image($url) {

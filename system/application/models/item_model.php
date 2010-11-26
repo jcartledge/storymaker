@@ -8,6 +8,8 @@ class Item_model extends Model {
     $result = $this->db->get()->result();
     $item = $result[0];
     $item->num_stories = $this->db->from('items_stories')->where('item_id', $item->id)->count_all_results();
+    $this->load->helper('attachment');
+    $item->type = item_type($item->mimetype);
     return $item;
   }
 
@@ -43,47 +45,51 @@ class Item_model extends Model {
 
   function save($id = NULL) {
     $data = array();
-    if($id) {
-      // update
-    } else {
+    if(!$id) {
       $data['created_at'] = date('Y-m-d H:i:s', time());
       $data['user_id'] = $this->tank_auth->get_user_id();
-      $data['title'] = $this->input->post('title');
-      $data['content'] = $this->input->post('content');
-      $data['description'] = $this->input->post('description');
-      $data['country'] = $this->input->post('country');
-      $data['year'] = $this->input->post('year');
-      $data['place'] = $this->input->post('place');
-      //mimetype
-      if($_FILES['image-file']['type']) {
-        $attachment = $_FILES['image-file'];
-      } elseif($_FILES['document-file']['type']) {
-        $attachment = $_FILES['document-file'];
-      } elseif($_FILES['video-file']['type']) {
-        $attachment = $_FILES['video-file'];
+    }
+    $data['title'] = $this->input->post('title');
+    $data['content'] = $this->input->post('content');
+    $data['description'] = $this->input->post('description');
+    $data['country'] = $this->input->post('country');
+    $data['year'] = $this->input->post('year');
+    $data['place'] = $this->input->post('place');
+    //mimetype
+    if($_FILES['image-file']['type']) {
+      $attachment = $_FILES['image-file'];
+    } elseif($_FILES['document-file']['type']) {
+      $attachment = $_FILES['document-file'];
+    } elseif($_FILES['video-file']['type']) {
+      $attachment = $_FILES['video-file'];
+    }
+    if(isset($attachment)) {
+      $data['attachment'] = $this->save_attachment($attachment);
+      if($data['attachment']) {
+        $data['mimetype'] = $attachment['type'];
       }
-      if(isset($attachment)) {
-        $data['attachment'] = $this->save_attachment($attachment);
-        if($data['attachment']) {
-          $data['mimetype'] = $attachment['type'];
-        }
-      } else {
-        // handle other attachment types: embeds, links
-        if($this->input->post('image-url')) {
-          $image_url = $this->input->post('image-url');
-          $data['mimetype'] = 'image/link';
-          $data['attachment'] = $image_url;
-        } elseif ($this->input->post('video-url')) {
-          $video_url = $this->input->post('video-url');
-          if(preg_match('/youtube/', $video_url)) {
-            $data['mimetype'] = 'video/youtube';
-            $data['attachment'] = $video_url;
-          } else if(preg_match('/vimeo/', $video_url)) {
-            $data['mimetype'] = 'video/vimeo';
-            $data['attachment'] = $video_url;
-          }
+    } else {
+      // handle other attachment types: embeds, links
+      if($this->input->post('image-url')) {
+        $image_url = $this->input->post('image-url');
+        $data['mimetype'] = 'image/link';
+        $data['attachment'] = $image_url;
+      } elseif ($this->input->post('video-url')) {
+        $video_url = $this->input->post('video-url');
+        if(preg_match('/youtube/', $video_url)) {
+          $data['mimetype'] = 'video/youtube';
+          $data['attachment'] = $video_url;
+        } else if(preg_match('/vimeo/', $video_url)) {
+          $data['mimetype'] = 'video/vimeo';
+          $data['attachment'] = $video_url;
         }
       }
+    }
+    if($id) {
+      $this->db->where('id', $id);
+      $this->db->update('items', $data);
+      return $this->load($id);
+    } else {
       $this->db->insert('items', $data);
       $item_id = $this->db->insert_id();
       if($this->input->post('themes')) foreach($this->input->post('themes') as $theme) {
@@ -128,15 +134,6 @@ class Item_model extends Model {
       $str = $this->db->escape("%$str%");
       $this->db->where("(title LIKE $str OR content LIKE $str OR description LIKE $str)", NULL, FALSE);
     }
-  }
-
-  /**
-   * validates uniqueness of title
-   * @param $title
-   * @return bool validity
-   */
-  function check_title($title) {
-    return !$this->db->from('items')->like('title', $title)->count_all_results();
   }
 
   private function begin_basic_items_query($limit = 0, $exclude_ids = array()) {

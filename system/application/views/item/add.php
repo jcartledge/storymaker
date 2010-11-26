@@ -11,7 +11,7 @@
 
   <?php echo form_error('type'); ?>
 
-  <p>Choose the type of item</p>
+  <p>Choose the type of item <span class="required">*</span></p>
   <label><input type="radio" name="type" <?php if($type == 'text') echo 'checked="checked" '; ?>value="text">Text</label>
   <?php echo form_error('content'); ?>
   <div class="<?php if($type == 'text') echo 'open-at-start '; ?>text-item">
@@ -22,11 +22,11 @@
   <label><input type="radio" name="type" <?php if($type == 'image') echo 'checked="checked" '; ?>value="image">Image</label>
   <div class="<?php if($type == 'image') echo 'open-at-start '; ?>image-item">
     <?php echo form_error('image-url'); ?>
-    <label for="image-url">Link to an image on the web</label>
-    <input class="long" name="image-url" value="<?php echo set_value('image-url'); ?>">
-    <br>
-    <label for="image-file">Or upload an image</label>
+    <label for="image-file">Upload an image</label>
     <input type="file" name="image-file">
+    <br>
+    <label for="image-url">Or link to an image on the web</label>
+    <input class="long" name="image-url" value="<?php echo set_value('image-url'); ?>">
   </div>
 
   <label><input type="radio" name="type" <?php if($type == 'document') echo 'checked="checked" '; ?>value="document">Document</label>
@@ -39,12 +39,12 @@
   <label><input type="radio" name="type" <?php if($type == 'video') echo 'checked="checked" '; ?>value="video">Video</label>
   <div class="<?php if($type == 'video') echo 'open-at-start '; ?>video-item">
     <?php echo form_error('video-url'); ?>
-    <label for="video-url">Link to a video on the web.</label>
+    <label for="video-file">Upload a video</label>
+    <input type="file" name="video-file">
+    <br>
+    <label for="video-url">Or link to a video on the web.</label>
     <p>This works for youtube and vimeo.<br>Paste the URL of the page containing the video here:</p>
     <input class="long" name="video-url" value="<?php echo set_value('video-url'); ?>">
-    <br>
-    <label for="video-file">Or upload a video</label>
-    <input type="file" name="video-file">
   </div>
 
   <h3>Year, country, place</h3>

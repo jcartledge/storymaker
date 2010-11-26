@@ -16,6 +16,20 @@ function attachment_type($mimetype) {
   return 'unknown';
 }
 
+function item_type($mimetype) {
+  $types = array(
+    'video'     => array('video/mpeg', 'video/avi', 'video/x-msvideo', 'video/quicktime', 'video/youtube', 'video/vimeo'),
+    'audio'     => array('audio/mp3', 'audio/mpeg', 'audio/aiff', 'audio/wav'),
+    'image'     => array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/link'),
+    'document'  => array('application/msword', 'application/pdf')
+  );
+  foreach($types as $type => $mimetypes) {
+    if(array_search($mimetype, $mimetypes) !== false) return $type;
+  }
+  return 'text';
+
+}
+
 function attachment_icon($mimetype) {
   $url = site_url('images/icons');
   switch(attachment_type($mimetype)) {
