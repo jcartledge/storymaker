@@ -36,6 +36,7 @@ $captcha = array(
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
+<h2>Register a new account</h2>
 <table>
 	<?php if ($use_username) { ?>
 	<tr>

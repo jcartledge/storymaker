@@ -88,5 +88,6 @@ $captcha = array(
 </table>
 <?php echo form_submit('submit', 'Let me in'); ?>
 <?php echo form_close(); ?>
+<?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'Don\'t have an account yet?'); ?><br/>
 <?php echo anchor('/auth/forgot_password/', 'Forgot your password?'); ?>
 <script>$(function(){$('#login').focus();})</script>
