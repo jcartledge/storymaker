@@ -5,5 +5,6 @@
   <li><a href="<?php echo site_url('manage'); ?>">manage stuff</a></li>
 <?php } else { ?>
 <li><a href="<?php echo site_url('auth/login'); ?>">login</a></li>
+<li><a href="<?php echo site_url('auth/register'); ?>">sign up</a></li>
 <?php } ?>
 </ul>
