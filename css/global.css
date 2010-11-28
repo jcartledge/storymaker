@@ -99,3 +99,5 @@ textarea { width: 440px; height: 120px; }
 .item-preview { max-height: 250px; overflow: hidden; }
 .item-preview .item-title { display:none; }
 .item-preview img, .item-preview embed, .item-preview iframe { max-width: 300px; max-height: 200px; }
+
+.items-user-form, .stories-user-form input, .items-user-form input { display: inline; }

@@ -18,21 +18,21 @@ class Item_model extends Model {
     $this->db->delete('items', array('id' => $item_id));
   }
 
-  function list_by_user($user_id, $limit = 10, $str = '') {
-    return $this->search($str, $limit, NULL, $user_id);
+  function list_by_user($username_or_id, $limit = 10, $str = '') {
+    return $this->search($str, $limit, NULL, $username_or_id);
   }
 
-  function search($str = '', $limit = 25, $story_id = NULL, $user_id = NULL) {
+  function search($str = '', $limit = 25, $story_id = NULL, $username_or_id = NULL) {
     $page = 1;
     if(isset($_GET['item-page'])) $page = $_GET['item-page'];
     $limit = array($limit, ($page - 1) * $limit);
-    $this->begin_search_query($str, $limit, $story_id, $user_id);
+    $this->begin_search_query($str, $limit, $story_id, $username_or_id);
     $this->db->order_by('id', 'desc');
     return $this->db->get()->result();
   }
 
-  function count($str = '', $story_id = NULL, $user_id = NULL) {
-    $this->begin_search_query($str, 0, $story_id, $user_id);
+  function count($str = '', $story_id = NULL, $username_or_id = NULL) {
+    $this->begin_search_query($str, 0, $story_id, $username_or_id);
     return $this->db->count_all_results();
   }
 
@@ -132,13 +132,19 @@ class Item_model extends Model {
     return str_replace('//', '', '/' . str_replace($_SERVER['DOCUMENT_ROOT'], '', $save_as));
   }
 
-  private function begin_search_query($str = '', $limit = 0, $story_id = NULL, $user_id = NULL) {
+  private function begin_search_query($str = '', $limit = 0, $story_id = NULL, $username_or_id = NULL) {
     $exclude_ids = array();
     if($story_id) {
       $this->load->model('Story_model', '', TRUE);
       $exclude_ids = $this->Story_model->item_ids($story_id);
     }
-    if($user_id) $this->db->where(array('user_id' => $user_id));
+    if($username_or_id) {
+      if(preg_match('/^[\d]+$/', $username_or_id)) {
+        $this->db->where(array('user_id' => $username_or_id));
+      } else {
+        $this->db->where(array('username' => $username_or_id));
+      }
+    }
     $this->begin_basic_items_query($limit, $exclude_ids);
     if($str) {
       $str = $this->db->escape("%$str%");

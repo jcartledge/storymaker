@@ -72,6 +72,7 @@ class Tank_auth
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,
 								'username'	=> $user->username,
+                'type' => $user->type,
 								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
 						));
 
@@ -139,6 +140,20 @@ class Tank_auth
 	{
 		return $this->ci->session->userdata('user_id');
 	}
+
+	/**
+	 * Get user type
+	 *
+	 * @return	string
+	 */
+	function get_user_type()
+	{
+		return $this->ci->session->userdata('type');
+	}
+
+  function is_admin() { 
+    return $this->get_user_type() == 'admin';
+  }
 
 	/**
 	 * Get username
@@ -637,6 +652,15 @@ class Tank_auth
 					$this->ci->config->item('login_attempt_expire', 'tank_auth'));
 		}
 	}
+
+  function userlist() {
+    $raw_userlist = $this->ci->users->list_usernames();
+    $userlist = array('All users');
+    foreach($raw_userlist as $user) {
+      $userlist[$user->username] = $user->username;
+    }
+    return $userlist;
+  }
 }
 
 /* End of file Tank_auth.php */

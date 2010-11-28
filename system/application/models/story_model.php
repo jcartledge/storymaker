@@ -25,12 +25,12 @@ class Story_model extends Model {
     return $this->db->get()->result();
   }
 
-  function list_by_user($user_id, $limit = 10, $str) {
-    return $this->search($str, $limit, $user_id);
+  function list_by_user($username_or_id, $limit = 10, $str) {
+    return $this->search($str, $limit, $username_or_id);
   }
 
-  function count($str = '', $user_id = NULL) {
-    $this->begin_search_query($str, 0, $user_id);
+  function count($str = '', $username_or_id = NULL) {
+    $this->begin_search_query($str, 0, $username_or_id);
     return $this->db->count_all_results();
   }
 
@@ -220,20 +220,26 @@ class Story_model extends Model {
     if(!$this->akismet->is_spam()) $this->db->insert('comments', $comment);
   }
 
-  private function begin_search_query($str = '', $limit = 25, $user_id = NULL) {
+  private function begin_search_query($str = '', $limit = 25, $username_or_id = NULL) {
     $this->begin_basic_stories_query($limit);
-    if($user_id) $this->db->where(array('user_id' => $user_id));
+    if($username_or_id) {
+      if(preg_match('/^[\d]+$/', $username_or_id)) {
+        $this->db->where(array('user_id' => $username_or_id));
+      } else {
+        $this->db->where(array('username' => $username_or_id));
+      }
+    }
     if($str) {
       $str = $this->db->escape("%$str%");
       $this->db->where("(title LIKE $str OR description LIKE $str)", NULL, FALSE);
     }
   }
 
-  function search($str = '', $limit = 25, $user_id = NULL) {
+  function search($str = '', $limit = 25, $username_or_id = NULL) {
     $page = 1;
     if(isset($_GET['story-page'])) $page = $_GET['story-page'];
     $limit = array($limit, ($page - 1) * $limit);
-    $this->begin_search_query($str, $limit, $user_id);
+    $this->begin_search_query($str, $limit, $username_or_id);
     $this->db->order_by('id', 'desc');
     return $this->db->get()->result();
   }

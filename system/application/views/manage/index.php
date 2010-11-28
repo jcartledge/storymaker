@@ -48,5 +48,7 @@ $(function(){
     }
     return false;
   });
+  $('.pager input').hide();
+  $('.pager select').change(function(){ $(this).closest('form').submit(); });
 });
 </script>

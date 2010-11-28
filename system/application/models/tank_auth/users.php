@@ -24,6 +24,10 @@ class Users extends Model
 		$this->profile_table_name	= $ci->config->item('db_table_prefix', 'tank_auth').$this->profile_table_name;
 	}
 
+  function list_usernames() {
+    return $this->db->from('users')->select('username')->orderby('username')->get()->result();
+  }
+
 	/**
 	 * Get user record by Id
 	 *
