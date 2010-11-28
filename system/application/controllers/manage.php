@@ -13,6 +13,7 @@ class Manage extends Controller {
     $this->load->model('Story_model', '', TRUE);
     $this->load->model('Item_model', '', TRUE);
     $this->load->library('layout');
+    $this->load->library('form_validation');
     $this->layout->setLayout('layouts/manage');
     $this->load->helper('attachment');
     $this->load->helper('thumbnail');
