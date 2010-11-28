@@ -19,6 +19,14 @@ class Auth extends Controller
 		redirect(site_url('auth/login'));
 	}
 
+  function account() {
+		if (!$this->tank_auth->is_logged_in()) redirect(site_url());
+    $this->load->model('tank_auth/users');
+    $data['user'] = $this->users->get_user_by_id($this->tank_auth->get_user_id(), TRUE);
+    $this->layout->view('auth/account', $data);
+
+  }
+
 	/**
 	 * Login user on the site
 	 *

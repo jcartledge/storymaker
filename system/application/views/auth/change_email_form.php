@@ -1,3 +1,4 @@
+<h2>Change your email address</h2>
 <?php
 $password = array(
 	'name'	=> 'password',

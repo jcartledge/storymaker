@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo site_url('css/auth.css'); ?>" type="text/css">
   </head>
   <body>
+    <?php echo $this->load->view('manage/nav'); ?>
     <h1><a href="<?php echo site_url(''); ?>">Small Histories</a></h1>
     <div id="content">
       <?php echo $content_for_layout; ?>

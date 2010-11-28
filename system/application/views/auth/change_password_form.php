@@ -1,3 +1,4 @@
+<h2>Change your password</h2>
 <?php
 $old_password = array(
 	'name'	=> 'old_password',
