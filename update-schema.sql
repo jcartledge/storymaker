@@ -97,4 +97,5 @@ ALTER TABLE `users` ADD COLUMN `new_password_key` VARCHAR(100);
 ALTER TABLE `users` ADD COLUMN `new_password_requested` TINYINT;
 ALTER TABLE `users` ADD COLUMN `last_ip` VARCHAR(100);
 ALTER TABLE `users` ADD COLUMN `last_login` DATETIME; 
+ALTER TABLE `users` ADD COLUMN `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00';
 ALTER TABLE `users` CHANGE `hashed_password` `password` varchar(32) NOT NULL DEFAULT '';

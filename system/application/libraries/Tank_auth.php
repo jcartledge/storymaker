@@ -170,8 +170,9 @@ class Tank_auth
 
 		} else {
 			// Hash password using phpass
-			$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
-			$hashed_password = $hasher->HashPassword($password);
+			//$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
+			//$hashed_password = $hasher->HashPassword($password);
+			$hashed_password = md5($password);
 
 			$data = array(
 				'username'	=> $username,
