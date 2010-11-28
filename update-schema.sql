@@ -94,7 +94,7 @@ UPDATE `users` SET `activated` = 1;
 ALTER TABLE `users` ADD COLUMN `new_email` VARCHAR(100) DEFAULT '';
 ALTER TABLE `users` ADD COLUMN `new_email_key` VARCHAR(100) DEFAULT ''
 ALTER TABLE `users` ADD COLUMN `new_password_key` VARCHAR(100);
-ALTER TABLE `users` ADD COLUMN `new_password_requested` TINYINT;
+ALTER TABLE `users` ADD COLUMN `new_password_requested` datetime DEFAULT NULL;
 ALTER TABLE `users` ADD COLUMN `last_ip` VARCHAR(100);
 ALTER TABLE `users` ADD COLUMN `last_login` DATETIME; 
 ALTER TABLE `users` ADD COLUMN `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00';

@@ -27,7 +27,7 @@ class Auth extends Controller
 	function login()
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
-			redirect(site_url());
+			redirect(site_url('manage'));
 
 		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
 			redirect(site_url('auth/send_again'));
@@ -51,7 +51,7 @@ class Auth extends Controller
 
 			$data['use_recaptcha'] = $this->config->item('use_recaptcha', 'tank_auth');
 			if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
-				if ($data['use_recaptcha'])
+	      if ($data['use_recaptcha'])
 					$this->form_validation->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback__check_recaptcha');
 				else
 					$this->form_validation->set_rules('captcha', 'Confirmation Code', 'trim|xss_clean|required|callback__check_captcha');

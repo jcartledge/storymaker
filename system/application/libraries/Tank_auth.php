@@ -334,8 +334,9 @@ class Tank_auth
 			if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
 
 				// Hash password using phpass
-				$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
-				$hashed_password = $hasher->HashPassword($new_password);
+				/*$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);*/
+				/*$hashed_password = $hasher->HashPassword($new_password);*/
+				$hashed_password = md5($new_password);
 
 				if ($this->ci->users->reset_password(
 						$user_id,
@@ -373,11 +374,14 @@ class Tank_auth
 		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
 
 			// Check if old password correct
-			$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
-			if ($hasher->CheckPassword($old_pass, $user->password)) {			// success
+			/*$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);*/
+			/*if ($hasher->CheckPassword($old_pass, $user->password)) {			// success*/
 
-				// Hash new password using phpass
-				$hashed_password = $hasher->HashPassword($new_pass);
+				// Hash new password using phpass*/
+				/*$hashed_password = $hasher->HashPassword($new_pass);*/
+
+      if(md5($old_pass) == $user->password) {
+        $hashed_password = md5($new_pass);
 
 				// Replace old password with new one
 				$this->ci->users->change_password($user_id, $hashed_password);
@@ -406,9 +410,10 @@ class Tank_auth
 		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
 
 			// Check if password correct
-			$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
-			if ($hasher->CheckPassword($password, $user->password)) {			// success
+			/*$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);*/
+			/*if ($hasher->CheckPassword($password, $user->password)) {			// success*/
 
+      if(md5($password) == $user->password) {
 				$data = array(
 					'user_id'	=> $user_id,
 					'username'	=> $user->username,
@@ -467,9 +472,10 @@ class Tank_auth
 		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
 
 			// Check if password correct
-			$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
-			if ($hasher->CheckPassword($password, $user->password)) {			// success
+			/*$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);*/
+			/*if ($hasher->CheckPassword($password, $user->password)) {			// success*/
 
+      if(md5($password) == $user->password) {
 				$this->ci->users->delete_user($user_id);
 				$this->logout();
 				return TRUE;
