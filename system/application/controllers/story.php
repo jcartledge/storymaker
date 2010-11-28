@@ -64,15 +64,7 @@ class Story extends Controller {
 
   function edit($id) {
     $this->load->helper('icon');
-    $authorized = FALSE;
-    if($this->tank_auth->is_logged_in()) {
-      $story = $this->Story_model->load($id, 0);
-      $authorized = ($story->user_id == $this->tank_auth->get_user_id());
-    }
-    if(!$authorized) {
-      $this->output->set_status_header('401');
-      redirect(site_url());
-    }
+    $story = $this->authorized_story($id);
     if(isset($_POST['items'])) {
       $story = $this->Story_model->save_items($id, $_POST['items']);
     }
@@ -89,6 +81,8 @@ class Story extends Controller {
   }
 
   function delete($id) {
+    $this->load->helper('icon');
+    $story = $this->authorized_story($id);
     if($_POST) {
       $this->Story_model->delete($id);
       //set message?
@@ -101,16 +95,19 @@ class Story extends Controller {
   }
 
   function remove($story_id, $item_id) {
+    $this->authorized_story($id);
     $this->Story_model->remove_item($story_id, $item_id);
     redirect($_SERVER['HTTP_REFERER']);
   }
 
   function item_up($story_id, $item_id) {
+    $this->authorized_story($id);
     $this->Story_model->move_item_up($story_id, $item_id);
     redirect($_SERVER['HTTP_REFERER']);
   }
 
   function item_down($story_id, $item_id) {
+    $this->authorized_story($id);
     $this->Story_model->move_item_down($story_id, $item_id);
     redirect($_SERVER['HTTP_REFERER']);
   }
@@ -118,4 +115,18 @@ class Story extends Controller {
   function check_title($title) {
     return $this->Story_model->check_title($title);
   }
+
+  private function authorized_story($story_id) {
+    $authorized = FALSE;
+    if($this->tank_auth->is_logged_in()) {
+      $story = $this->Story_model->load($story_id, 0);
+      $authorized = $this->tank_auth->is_admin() || ($story->user_id == $this->tank_auth->get_user_id());
+    }
+    if(!$authorized) {
+      $this->output->set_status_header('401');
+      redirect(site_url());
+    }
+    return $story;
+  }
 }
+

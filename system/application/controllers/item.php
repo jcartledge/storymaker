@@ -64,15 +64,7 @@ class Item extends Controller {
   }
 
   function edit($id) {
-    $authorized = FALSE;
-    if($this->tank_auth->is_logged_in()) {
-      $item = $this->Item_model->load($id, 0);
-      $authorized = ($item->user_id == $this->tank_auth->get_user_id());
-    }
-    if(!$authorized) {
-      $this->output->set_status_header('401');
-      redirect(site_url());
-    }
+    $item = $this->authorized_item($id);
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
     $this->form_validation->set_rules('title', 'title', 'required');
@@ -92,6 +84,7 @@ class Item extends Controller {
   }
 
   function delete($id) {
+    $item = $this->authorized_item($id);
     if($_POST) {
       $this->Item_model->delete($id);
       //set message?
@@ -124,5 +117,18 @@ class Item extends Controller {
   function places() {
     header('Content-type: application/json');
     return json_encode($this->Item_model->places($this->input->get('term')));
+  }
+
+  function authorized_item($item_id) {
+    $authorized = FALSE;
+    if($this->tank_auth->is_logged_in()) {
+      $item = $this->Item_model->load($item_id, 0);
+      $authorized = $this->tank_auth->is_admin() || ($item->user_id == $this->tank_auth->get_user_id());
+    }
+    if(!$authorized) {
+      $this->output->set_status_header('401');
+      redirect(site_url());
+    }
+    return $item;
   }
 }
