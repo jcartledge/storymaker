@@ -19,6 +19,8 @@
 </form>
 <div class="edit-story-items items">
   <h3><?php echo count($story->items); ?> item<?php if(count($story->items) != 1) echo 's'; ?> in <em><?php echo $story->title; ?></em></h3>
+  <a class="add-item" href="<?php echo site_url('item/add/' . $story->id); ?>"><?php echo icon('add'); ?>Add a new item</a>
+  <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1)); ?>
   <form class="edit-story-layout" method="post" action="">
     <label for="layout">Choose a layout:</label>
     <?php echo form_dropdown('layout', array(
@@ -32,8 +34,6 @@
     <input type="submit" value="Set layout">
     <!--<a href="<?php echo site_url('story/layout/' . $story->id); ?>">Choose a layout</a>.-->
   </form>
-  <a class="add-item" href="<?php echo site_url('item/add/' . $story->id); ?>"><?php echo icon('add'); ?>Add a new item</a>
-  <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1)); ?>
   <div class="finish"><button><a href="<?php echo site_url('manage'); ?>">Finish editing</a></button></div>
 </div>
 <script>

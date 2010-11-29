@@ -51,7 +51,7 @@ input[type=radio] { display: inline; }
 .manage-nav li { float: right; padding: 0.5em; }
 form .error { width: 250px; float: right; margin-right: 100px; }
 
-.item-search { padding-left: 1em; padding-top: 2em; position: absolute; z-index: 100; }
+.item-search { padding-left: 1.2em; padding-top: 3em; position: absolute; z-index: 100; }
 .item-search input { display: inline; }
 .edit-story { width: 340px; position: absolute; top: 90px; }
 .edit-story h3 { margin:0; margin-bottom: 3em; }

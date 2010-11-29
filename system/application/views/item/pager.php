@@ -1,7 +1,7 @@
 <?php
 $num_pages = ceil($num_items / $page_size);
 $page = $this->input->get('item-page');
-$show_form = isset($items_username) && $this->tank_auth->is_admin();
+$show_form = (isset($show_form)) ? $show_form : isset($items_username) && $this->tank_auth->is_admin();
 if(!$page) $page = 1;
 if(!is_callable('item_pager_link')) {
   function item_pager_link($page = NULL) {
