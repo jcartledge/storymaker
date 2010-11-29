@@ -34,7 +34,10 @@
     <input type="submit" value="Set layout">
     <!--<a href="<?php echo site_url('story/layout/' . $story->id); ?>">Choose a layout</a>.-->
   </form>
-  <div class="finish"><button><a href="<?php echo site_url('manage'); ?>">Finish editing</a></button></div>
+  <div class="finish">
+    <button><a href="<?php echo site_url('story/view/' . $story->id); ?>">View story</a></button>
+    <button><a href="<?php echo site_url('manage'); ?>">Finish editing</a></button>
+  </div>
 </div>
 <script>
 $(function(){
