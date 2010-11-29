@@ -94,7 +94,7 @@ div.text-item, div.image-item, div.document-item, div.video-item {
 .themes p { clear: both; }
 .themes label { float: left; width: 230px; height: 1.5em; }
 
-.pager { clear: both; }
+.pager { clear: both; font-size: small; }
 .pager .next { float: right; }
 
 textarea { width: 440px; height: 120px; }
