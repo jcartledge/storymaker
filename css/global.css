@@ -79,7 +79,7 @@ img.icon { float: right; margin: 8px; border: none;}
 .items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
 .edit-story-layout, a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }
 .edit-story-items .add-item, .edit-story-layout, .pager, .items li, .stories li { text-indent: 1em; border-top: 1px solid #ccc; }
-.edit-story-layout { background-color: #eee; }
+.edit-story-layout { background-color: #eee; text-align: right; padding: 0.5em; }
 .edit-story-layout label, .edit-story-layout input { display: inline; }
 div.text-item, div.image-item, div.document-item, div.video-item {
   width: 410px;
@@ -119,8 +119,9 @@ textarea { width: 440px; height: 120px; }
   left: 480px;
 }
 
-.finish { width: 100%; text-align: right; border-top: 1px solid #ccc; padding-top: 0.2em; margin-bottom: 0.2em; }
+.finish { width: 100%; text-align: right; border-top: 1px solid #ccc; padding-top: 0.5em; margin-bottom: 0.5em; }
 .finish a { text-decoration: none; color: black; }
+.finish button { margin-right: 0.5em; }
 .your-item { background-color: #eec; }
 .item-username { float: right; margin-right: 0.5em; }
 .item-stories { clear: left; font-size: small; color: gray; }
