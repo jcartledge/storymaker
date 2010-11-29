@@ -69,7 +69,8 @@ img.icon { float: right; margin: 8px; border: none;}
 .items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
 .edit-story-layout, a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }
 .edit-story-items .add-item, .edit-story-layout, .pager, .items li, .stories li { text-indent: 1em; border-top: 1px solid #ccc; }
-
+.edit-story-layout { background-color: #eee; }
+.edit-story-layout label, .edit-story-layout input { display: inline; }
 div.text-item, div.image-item, div.document-item, div.video-item {
   width: 410px;
   margin-bottom: 1em;
@@ -101,3 +102,11 @@ textarea { width: 440px; height: 120px; }
 .item-preview img, .item-preview embed, .item-preview iframe { max-width: 300px; max-height: 200px; }
 
 .items-user-form, .stories-user-form input, .items-user-form input { display: inline; }
+
+.saving, .saved {
+  position: absolute;
+  top: 150px;
+  left: 480px;
+}
+.finish { text-align: right; border-top: 1px solid #ccc; }
+.finish a { text-decoration: none; color: black; }
