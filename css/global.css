@@ -111,3 +111,5 @@ textarea { width: 440px; height: 120px; }
 
 .finish { width: 100%; text-align: right; border-top: 1px solid #ccc; padding-top: 0.2em; margin-bottom: 0.2em; }
 .finish a { text-decoration: none; color: black; }
+.your-item { background-color: #eec; }
+.item-username { float: right; margin-right: 0.5em; }

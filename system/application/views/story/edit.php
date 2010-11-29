@@ -7,8 +7,9 @@
   <h3>Add items to your story</h3>
     <?php echo $this->load->view('item/pager', array('page_size' => $page_size, 'num_items' => $num_items)); ?>
     <ul class="items"><?php foreach($items as $item) {?>
-      <li>
+      <li<?php if($item->user_id == $this->tank_auth->get_user_id()) echo ' class="your-item"'; ?>>
         <input type="checkbox" name="items[]" value="<?php echo $item->id; ?>">
+        <small class="item-username"><?php echo $item->username; ?></small>
         <img src="<?php echo attachment_icon($item->mimetype); ?>" title="<?php echo $item->mimetype; ?>">
         <?php echo anchor('/item/view/' . $item->id, $item->title, array('class' => 'item')); ?>
       </li>
@@ -32,7 +33,7 @@
     <!--<a href="<?php echo site_url('story/layout/' . $story->id); ?>">Choose a layout</a>.-->
   </form>
   <a class="add-item" href="<?php echo site_url('item/add/' . $story->id); ?>"><?php echo icon('add'); ?>Add a new item</a>
-  <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1, 'hide_form_tags' => 1)); ?>
+  <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1)); ?>
   <div class="finish"><button><a href="<?php echo site_url('manage'); ?>">Finish editing</a></button></div>
 </div>
 <script>
@@ -65,7 +66,8 @@ $(function(){
     return false;
   });
   function refresh_sortables() {
-          if($('.edit-story-items .empty').length) $('.edit-story-items .empty').append('<p>Drag items here to add them</p>');
+    $('.pager select').change(function(){ location.href='?items_username=' + $(this).val(); });
+    if($('.edit-story-items .empty').length) $('.edit-story-items .empty').append('<p>Drag items here to add them</p:>');
     $('.arrow_up, .arrow_down, .delete, input[type=checkbox], .edit-story input[type=submit], .ui-sortable input[type=submit]').remove();
     $('.edit-story ul,').sortable({
       revert: 200,
