@@ -40,7 +40,9 @@
 $(function(){
   $('.edit-story-layout select').live('change', function(){
     var form = $('.edit-story-layout');
+    $('<div class="saving">Saving...</div>').appendTo($('body'));
     $.post(form[0].action, form.serialize(), function(data){
+      $('.saving').removeClass('saving').addClass('saved').html('Saved.').fadeOut('slow');
       $('.edit-story').replaceWith($(data).find('.edit-story'));
       $('.edit-story-items').replaceWith($(data).find('.edit-story-items'));
       refresh_sortables();
