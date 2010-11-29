@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title><?php echo isset($title) ? $title : 'Small Histories'; ?></title>
+    <title><?php echo isset($title) ? $title : $this->config->item('title'); ?></title>
     <meta charset="utf-8">
     <script>window.base_url = "<?php echo base_url(); ?>";</script>
     <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
@@ -23,7 +23,7 @@
   </head>
   <body class="story-page <?php echo $story->layout; ?>-layout">
     <?php echo $this->load->view('manage/nav'); ?>
-    <h1><a href="<?php echo site_url(''); ?>">Small Histories</a></h1>
+    <h1><a href="<?php echo site_url(); ?>"><?php echo $this->config->item('site_name'); ?></a></h1>
     <?php echo $this->load->view('story/search_form'); ?>
     <div id="content">
       <?php echo $content_for_layout; ?>

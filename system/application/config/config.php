@@ -325,5 +325,8 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+$config['title'] = 'Teaching Men - story creation site';
+$config['site_name'] = 'Teaching Men - story creation site';
+
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */
