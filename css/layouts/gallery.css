@@ -18,10 +18,10 @@ h3.story-description { width: 700px; }
 
 h1, .gallery-layout .search-form, .story-owner, .story-title, .story-description, .footer { position: fixed; }
 h1 { top: 0; }
-.story-title { top: 80px; }
-.story-owner { top: 115px; }
-.story-description { top: 150px; }
-.story-items { padding-top : 230px; }
+.story-title { top: 140px; }
+.story-owner { top: 175px; }
+.story-description { top: 210px; }
+.story-items { padding-top : 120px; }
 
 .pager.top { position: fixed; top: 50px; left: 100px; }
 .pager.bottom { display: none; }
