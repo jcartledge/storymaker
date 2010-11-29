@@ -11,7 +11,7 @@ h1 a {
 body {
   min-height: 100%;
   position: relative;
-  font-family: Ubuntu, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  font-family: Ubuntu, Arial, sans-serif;
   background: url('/teachingmen/images/teachingmen.png') 100px 15px no-repeat;
 }
 
