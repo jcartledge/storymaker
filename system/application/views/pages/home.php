@@ -1,8 +1,8 @@
 <h2>What is this site about?</h2>
 
-<p>This website has been designed to help you keep, share and compare your teaching stories. It is an experiment in recording and presenting different people's workplace stories to the world and each other. It is based on the Small Histories project and website (www.smallhistories.com), a PhD project by Melbourne narrative researcher Stefan Schutt.</p>
+<p>This website has been designed to help you keep, share and compare your teaching stories. It is an experiment in recording and presenting different people's workplace stories to the world and each other. It is based on the <a href="http://www.smallhistories.com/">Small Histories project and website</a>, a PhD project by Melbourne narrative researcher Stefan Schutt.</p>
 
-<p>This site is part of Teaching Men (www.teachingmen.com.au), a research study by Ian Davis that explores how text and context, trope and history, narrative and construction operate within educational settings to produce and promote strategic styles of masculinity. This project highlights the importance of narrative, fictional and otherwise, in the practice and design of teaching, education and masculinity.</p>
+<p>This site is part of <a href="http://www.teachingmen.com.au/">Teaching Men</a>, a research study by Ian Davis that explores how text and context, trope and history, narrative and construction operate within educational settings to produce and promote strategic styles of masculinity. This project highlights the importance of narrative, fictional and otherwise, in the practice and design of teaching, education and masculinity.</p>
 
 <p>Ian and Stefan worked together on this site. Please let us know if you have any thoughts or comments about it.</p>
 
