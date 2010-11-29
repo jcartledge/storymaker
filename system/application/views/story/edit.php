@@ -32,7 +32,7 @@
     <!--<a href="<?php echo site_url('story/layout/' . $story->id); ?>">Choose a layout</a>.-->
   </form>
   <a class="add-item" href="<?php echo site_url('item/add/' . $story->id); ?>"><?php echo icon('add'); ?>Add a new item</a>
-  <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1)); ?>
+  <?php $this->load->view('item/manage-list', array('items' => $story->items, 'actions' => array('remove', 'move'), 'hide_pager' => 1, 'hide_form_tags' => 1)); ?>
   <div class="finish"><button><a href="<?php echo site_url('manage'); ?>">Finish editing</a></button></div>
 </div>
 <script>
@@ -65,6 +65,7 @@ $(function(){
     return false;
   });
   function refresh_sortables() {
+          if($('.edit-story-items .empty').length) $('.edit-story-items .empty').append('<p>Drag items here to add them</p>');
     $('.arrow_up, .arrow_down, .delete, input[type=checkbox], .edit-story input[type=submit], .ui-sortable input[type=submit]').remove();
     $('.edit-story ul,').sortable({
       revert: 200,

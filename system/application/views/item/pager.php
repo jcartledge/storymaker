@@ -17,7 +17,7 @@ if(!is_callable('item_pager_link')) {
 <div class="pager">
   <?php if($page > 1) { ?><a class="prev" href="<?php echo item_pager_link($page - 1); ?>">Previous</a><?php } ?>
   <?php if($page < $num_pages) { ?><a class="next" href="<?php echo item_pager_link($page + 1); ?>">Next</a><?php } ?>
-  <?php if($show_form) { ?><form class="items-user-form" action="<?php echo item_pager_link(); ?>"><?php } ?>
+  <?php if($show_form && !isset($hide_form_tags)) { ?><form class="items-user-form" action="<?php echo item_pager_link(); ?>"><?php } ?>
   <?php if(isset($_GET['stories_username'])) { ?><input type="hidden" name="stories_username" value="<?php echo $_GET['stories_username']; ?>"><?php } ?>
     <p>
       <?php if($num_items) { ?>Showing <?php $first = 1 + ($page_size * ($page - 1)); echo $first; ?> to <?php echo $first + count($items) - 1; ?>
@@ -28,5 +28,5 @@ if(!is_callable('item_pager_link')) {
         $items_username; ?></em><?php } ?>
       <?php if($item_search) echo " matching <em>{$item_search}</em>"; ?>
     </p>
-      <?php if($show_form) { ?></form><?php } ?>
+    <?php if($show_form && !isset($hide_form_tags)) { ?></form><?php } ?>
 </div>
