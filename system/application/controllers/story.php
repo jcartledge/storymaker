@@ -22,6 +22,15 @@ class Story extends Controller {
 
   function view($id, $page = 1) {
     $data['story'] = $this->Story_model->load($id, $page);
+    foreach($data['story']->items as $i => $item) {
+      $remove_keys = array();
+      foreach($item->stories as $k => $story) {
+        if($story->id == $id) $remove_keys[] = $k;
+      }
+      foreach($remove_keys as $key) {
+        unset($data['story']->items[$i]->stories[$key]);
+      }
+    }
     $data['owner'] = ($data['story']->username == $this->tank_auth->get_username());
     $this->layout->setLayout('layouts/story');
     $this->layout->view('story/view', $data);
@@ -74,9 +83,12 @@ class Story extends Controller {
     $data['story'] = $story;
     $this->load->model('Item_model');
     $data['item_search'] = isset($_GET['item-search']) ? $_GET['item-search'] : '';
+    $data['items_username'] = isset($_GET['items_username']) ? $_GET['items_username'] : '0';
     $data['page_size'] = 15;
-    $data['items'] = $this->Item_model->search($data['item_search'], $data['page_size'], $id);
-    $data['num_items'] = $this->Item_model->count($data['item_search'], $id);
+    $data['items'] = $this->Item_model->search($data['item_search'], $data['page_size'], $id, $data['items_username']);
+    $data['num_items'] = $this->Item_model->count($data['item_search'], $id, $data['items_username']);
+    $data['show_form'] = 1;
+    $data['hide_form_tags'] = 1;
     $this->layout->view('story/edit', $data);
   }
 

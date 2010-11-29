@@ -12,7 +12,7 @@ $(function() {
             pos_y:    ia.offset()['top']
           };
           ia.css({opacity: 0.5});
-          $.get('/item/position', data, function() { ia.css({opacity: 1.0}); });
+          $.get('/teachingmen/item/position', data, function() { ia.css({opacity: 1.0}); });
         }
       });
       break

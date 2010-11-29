@@ -1,4 +1,4 @@
-body { background: url('/images/SHorangeheader.gif') top left no-repeat; }
+body { background: url('/teachingmen/images/teachingmen.png') 100px 15px no-repeat; }
 .story-item dt, .story-item dd { float: left; font-size: small; }
 dd { padding-left: 0.5em; margin: 0; margin-right: 2em; }
 .pager { clear: left; }

@@ -154,6 +154,7 @@ class Item_model extends Model {
 
   private function begin_basic_items_query($limit = 0, $exclude_ids = array()) {
     $this->db->select('items.*');
+    $this->db->select('users.username');
     $this->db->from('items');
     $this->db->join('users', 'users.id = items.user_id');
     if($exclude_ids) $this->db->where_not_in('items.id', $exclude_ids);
