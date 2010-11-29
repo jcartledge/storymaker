@@ -4,7 +4,7 @@
     <title><?php echo isset($title) ? $title : $this->config->item('title'); ?></title>
     <meta charset="utf-8">
     <script>window.base_url = "<?php echo base_url(); ?>";</script>
-    <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
+    <script src="<?php echo site_url('js/jquery-1.3.2.min.js'); ?>"></script>
     <script src="<?php echo site_url('js/jquery-ui-1.8.6.custom.min.js'); ?>"></script>
     <script src="<?php echo site_url('js/jquery.lightbox-0.5.pack.js'); ?>"></script>
     <script src="<?php echo site_url('js/jquery.cycle.lite.min.js'); ?>"></script>

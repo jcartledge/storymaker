@@ -39,9 +39,9 @@
 <script>
 $(function(){
   $('.edit-story-layout select').live('change', function(){
-    var form = $('.edit-story-layout');
+    var form = $(this).closest('form');
     $('<div class="saving">Saving...</div>').appendTo($('body'));
-    $.post(form[0].action, form.serialize(), function(data){
+    $.post(location.href, form.serialize(), function(data){
       $('.saving').removeClass('saving').addClass('saved').html('Saved.').fadeOut('slow');
       $('.edit-story').replaceWith($(data).find('.edit-story'));
       $('.edit-story-items').replaceWith($(data).find('.edit-story-items'));
@@ -68,6 +68,7 @@ $(function(){
     return false;
   });
   function refresh_sortables() {
+    $('.edit-story-layout input').remove();
     $('.pager select').change(function(){ location.href='?items_username=' + $(this).val(); });
     if($('.edit-story-items .empty').length) $('.edit-story-items .empty').append('<p>Drag items here to add them</p:>');
     $('.arrow_up, .arrow_down, .delete, input[type=checkbox], .edit-story input[type=submit], .ui-sortable input[type=submit]').remove();
