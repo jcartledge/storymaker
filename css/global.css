@@ -27,6 +27,7 @@ h1 a { display: block; width: 100%; }
 dt { width: 100px; margin: 0; float: left; clear: left; font-weight: bold; }
 dd { margin: 0; float: left; }
 
+.story-items dl, .item-preview dl { font-size: small; color: gray; }
 .homepage-stories, .homepage-stories a {
   display:block;
   width: 700px;
@@ -122,3 +123,5 @@ textarea { width: 440px; height: 120px; }
 .finish a { text-decoration: none; color: black; }
 .your-item { background-color: #eec; }
 .item-username { float: right; margin-right: 0.5em; }
+.item-stories { clear: left; font-size: small; color: gray; }
+.item-stories p { padding-top: 1em; margin-bottom: 0; }

@@ -190,7 +190,15 @@ class Story_model extends Model {
     $this->begin_basic_items_query($id);
     if($where) $this->db->where($where);
     if($page && $items_per_page) $this->db->limit($items_per_page, $items_per_page * ($page - 1));
-    return $this->db->get()->result();
+    $items = $this->db->get()->result();
+    foreach($items as $i => $item) {
+      $this->db->select('stories.id, stories.title')->from('stories');
+      $this->db->join('items_stories', 'items_stories.story_id = stories.id');
+      $this->db->where(array('items_stories.item_id' => $item->id));
+      $item->stories = $this->db->get()->result();
+      $items[$i] = $item;
+    }
+    return $items;
   }
 
   function item_ids($id) {

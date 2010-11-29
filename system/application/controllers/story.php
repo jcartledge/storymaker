@@ -22,6 +22,15 @@ class Story extends Controller {
 
   function view($id, $page = 1) {
     $data['story'] = $this->Story_model->load($id, $page);
+    foreach($data['story']->items as $i => $item) {
+      $remove_keys = array();
+      foreach($item->stories as $k => $story) {
+        if($story->id == $id) $remove_keys[] = $k;
+      }
+      foreach($remove_keys as $key) {
+        unset($data['story']->items[$i]->stories[$key]);
+      }
+    }
     $data['owner'] = ($data['story']->username == $this->tank_auth->get_username());
     $this->layout->setLayout('layouts/story');
     $this->layout->view('story/view', $data);

@@ -1,1 +1,1 @@
-$(function(){ $('.story-item a').lightBox(); });
+$(function(){ $('.item-attachment a').lightBox(); });

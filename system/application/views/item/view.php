@@ -19,5 +19,11 @@
       <dt>Place: </dt>
       <dd><?php echo $item->place; ?></dd>
     </dl><?php } ?>
+    <?php if(isset($item->stories) && count($item->stories)) { $stories = $item->stories; ?><div class="item-stories">
+    <p>Used in the following <?php echo count($stories) == 1 ? 'story' : 'stories'; ?>:</p>
+    <ul>
+    <?php foreach($stories as $story) { ?><li><?php echo anchor('story/view/' . $story->id, $story->title); ?></li><?php } ?>
+    </ul>
+    <?php } ?>
   <br style="clear:left;">
 </div>
