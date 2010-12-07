@@ -41,6 +41,10 @@
 </div>
 <script>
 $(function(){
+  // activate buttons in FF
+  $('button').live('click', function(){
+    location.href = $(this).children('a').attr('href');
+  })
   $('.edit-story-layout select').live('change', function(){
     var form = $(this).closest('form');
     $('<div class="saving">Saving...</div>').appendTo($('body'));
