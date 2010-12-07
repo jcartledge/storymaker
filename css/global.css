@@ -14,7 +14,7 @@ body {
   font-family: Ubuntu, Arial, sans-serif;
   background: url('/teachingmen/images/teachingmen.png') 100px 15px no-repeat;
 }
-
+a img { border: none; }
 br { clear: both; }
 
 #content { width: 700px; margin-left: 100px; padding-bottom: 50px; padding-top: 140px;}
