@@ -78,7 +78,7 @@ ul, li { padding: 0; margin: 0; list-style-type: none; }
 img.icon { float: right; margin: 8px; border: none;}
 .items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
 .edit-story-layout, a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }
-.edit-story-items .add-item, .edit-story-layout, .pager, .items li, .stories li { text-indent: 1em; border-top: 1px solid #ccc; }
+.edit-story-items .add-item, .edit-story-layout, .pager, .items li, .stories li { padding-left: 1em; border-top: 1px solid #ccc; }
 .edit-story-layout { background-color: #eee; text-align: right; padding: 0.5em; }
 .edit-story-layout label, .edit-story-layout input { display: inline; }
 div.text-item, div.image-item, div.document-item, div.video-item {

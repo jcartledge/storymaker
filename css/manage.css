@@ -14,4 +14,4 @@
 
 
 .items .add-item, .stories .add-story,
-.items p, .stories p { text-indent: 1em; }
+.items p, .stories p { margin-right: 1em; }
