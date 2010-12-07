@@ -17,7 +17,7 @@ body {
 a img { border: none; }
 br { clear: both; }
 
-#content { width: 700px; margin-left: 100px; padding-bottom: 50px; padding-top: 140px;}
+#content { width: 700px; margin-left: 100px; padding-top: 140px;}
 
 h1 { margin-left: 100px; }
 h1 a { display: block; }
@@ -54,13 +54,11 @@ form .error { width: 250px; float: right; margin-right: 100px; }
 
 .item-search { padding-left: 1.2em; padding-top: 3em; position: absolute; z-index: 100; }
 .item-search input { display: inline; }
-.edit-story { width: 340px; position: absolute; top: 90px; }
+.edit-story { width: 340px; }
 .edit-story h3 { margin:0; margin-bottom: 3em; }
 ul, li { padding: 0; margin: 0; list-style-type: none; }
 .edit-story input { float: right; }
 .edit-story {
-  position: absolute;
-  top: 210px;
   width: 326px;
   margin-left: 10px;
   margin-right: 10px;
@@ -76,7 +74,7 @@ ul, li { padding: 0; margin: 0; list-style-type: none; }
 }
 .edit-story h3, .edit-story-items h3 { margin: 0; margin-left: 0.5em; margin-top: 0.3em; margin-bottom: 3em; }
 img.icon { float: right; margin: 8px; border: none;}
-a.add-story, a.add-item { padding-left: 1em; padding-right: 0; }
+a.add-story, a.add-item { padding-left: 1em; }
 .items li:hover, .stories li:hover, a.add-item:hover, a.add-story:hover { background-color: #eee; }
 .edit-story-layout, a.add-item, a.add-story, .items li, .stories li { display: block; line-height: 2em; }
 .edit-story-items .add-item, .edit-story-layout, .pager, .items li, .stories li { padding-left: 1em; border-top: 1px solid #ccc; }
