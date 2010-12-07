@@ -27,6 +27,7 @@
     <?php echo $this->load->view('story/search_form'); ?>
     <div id="content">
       <?php echo $content_for_layout; ?>
+      <p style="clear:left">&nbsp;</p>
     </div>
     <?php echo $this->load->view('footer'); ?>
     <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
