@@ -1,4 +1,10 @@
 $(function() {
+  $('.item-title').css('cursor', 'pointer').each(function(){ 
+    var content = $($(this).nextAll('.item-stories')[0]);
+    $(this).click(function(e){
+      content.css({position: 'absolute', top: e.pageY, left: e.pageX }).toggle();
+    });
+  });
   $('.comments-link')
     .css({position: 'fixed', top: '40%', right: '0px'})
     .html('<img src="' + window.base_url + '/images/comments-tab.png">')
