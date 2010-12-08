@@ -117,8 +117,8 @@ $(function(){
     item_divs.slideUp('fast');
     $('.' + this.value + '-item').slideDown('fast');
   });
-  $('.year').autocomplete({source: '/item/years'});
-  $('.country').autocomplete({source: '/item/countries'});
-  $('.place').autocomplete({source: '/item/places'});
+  $('.year').autocomplete({source: ["1981", "1982", "1983"]});
+  $('.country').autocomplete({source: '/teachingmen/item/countries'});
+  $('.place').autocomplete({source: '/teachingmen/item/places'});
 });
 </script>

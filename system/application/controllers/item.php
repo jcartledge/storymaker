@@ -105,18 +105,15 @@ class Item extends Controller {
   }
 
   function years() {
-    header('Content-type: application/json');
     echo json_encode($this->Item_model->years($this->input->get('term')));
   }
 
   function countries() {
-    header('Content-type: application/json');
-    return json_encode($this->Item_model->countries($this->input->get('term')));
+    echo json_encode($this->Item_model->countries($this->input->get('term')));
   }
 
   function places() {
-    header('Content-type: application/json');
-    return json_encode($this->Item_model->places($this->input->get('term')));
+    echo json_encode($this->Item_model->places($this->input->get('term')));
   }
 
   function authorized_item($item_id) {

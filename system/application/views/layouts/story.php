@@ -10,6 +10,7 @@
     <script src="<?php echo site_url('js/jquery.cycle.lite.min.js'); ?>"></script>
     <script src="<?php echo site_url('js/jquery.center.js'); ?>"></script>
     <script src="<?php echo site_url('js/instant.js'); ?>"></script>
+    <script src="<?php echo site_url('js/jquery.tooltip.min.js'); ?>"></script>
     <script src="<?php echo site_url('js/story.js'); ?>"></script>
     <script src="<?php echo site_url('js/layouts/' . $story->layout . '.js'); ?>"></script>
 <?php if($owner){ ?>
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="<?php echo site_url('css/global.css'); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo site_url('css/story.css'); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo site_url('css/jquery.lightbox-0.5.css'); ?>" type="text/css">
+    <link rel="stylesheet" href="<?php echo site_url('css/jquery.tooltip.css'); ?>"></script>
     <link rel="stylesheet" href="<?php echo site_url('css/layouts/' . $story->layout . '.css'); ?>" type="text/css">
   </head>
   <body class="story-page <?php echo $story->layout; ?>-layout">
