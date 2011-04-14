@@ -37,11 +37,11 @@
 $active_group = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = "localhost";
-$db['default']['username'] = "smallhistories";
-$db['default']['password'] = "5m4llh15t0r135";
-$db['default']['database'] = "smallhistories";
-$db['default']['dbdriver'] = "mysql";
+$db['default']['hostname'] = "";
+$db['default']['username'] = "";
+$db['default']['password'] = "";
+$db['default']['database'] = "";
+$db['default']['dbdriver'] = "";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

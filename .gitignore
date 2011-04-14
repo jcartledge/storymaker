@@ -2,3 +2,4 @@ license.txt
 user_guide
 captcha/*
 attachments/*
+system/application/config/database.php
