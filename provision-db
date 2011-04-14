@@ -1,0 +1,32 @@
+#!/usr/bin/env php
+<?php
+define('BASEPATH', 'stfu codeigniter');
+require_once 'system/application/config/database.php';
+
+$tables = array("ci_sessions", "comments", "items", "items_stories", "items_themes", "login_attempts", "schema_version", "stories", "themes", "user_autologin", "user_profiles", "users");
+
+foreach($tables as $table) {
+  $tmpfilename = sprintf('/tmp/%s%s.sql', $db['default']['dbprefix'], $table);
+  $dump_cmd = sprintf('mysqldump -u%s -p%s -h%s %s %s > %s',
+    $db['default']['username'],
+    $db['default']['password'],
+    $db['default']['hostname'],
+    $db['default']['database'],
+    $table,
+    $tmpfilename
+  );
+  $process_cmd = sprintf('sed -i \'s/`%s`/`%s%s`/g\' %s',
+    $table,
+    $db['default']['dbprefix'],
+    $table,
+    $tmpfilename 
+  );
+  $load_cmd = sprintf('mysql -u%s -p%s -h%s %s < %s',
+    $db['default']['username'],
+    $db['default']['password'],
+    $db['default']['hostname'],
+    $db['default']['database'],
+    $tmpfilename
+  );
+  `$dump_cmd && $process_cmd && $load_cmd`;
+}
