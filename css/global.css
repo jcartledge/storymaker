@@ -12,7 +12,7 @@ body {
   min-height: 100%;
   position: relative;
   font-family: Ubuntu, Arial, sans-serif;
-  background: url('/teachingmen/images/teachingmen.png') 100px 15px no-repeat;
+  background: url('/vu/images/logo.png') 100px 15px no-repeat;
 }
 a img { border: none; }
 br { clear: both; }

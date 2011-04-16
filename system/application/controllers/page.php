@@ -15,26 +15,30 @@ class Page extends Controller {
     $this->load->helper('thumbnail');
     $this->load->model('Story_model', '', TRUE);
     $data['homepage_stories'] = $this->Story_model->homepage_stories();
-    $this->layout->view('pages/home', $data);
+    $this->layout->view($this->template_path('home'), $data);
   }
 
   function about() {
-    $this->layout->view('pages/about');
+    $this->layout->view($this->template_path('about'));
   }
 
   function disclaimer() {
-    $this->layout->view('pages/disclaimer');
+    $this->layout->view($this->template_path('disclaimer'));
   }
 
   function privacy() {
-    $this->layout->view('pages/privacy');
+    $this->layout->view($this->template_path('privacy'));
   }
 
   function copyright() {
-    $this->layout->view('pages/copyright');
+    $this->layout->view($this->template_path('copyright'));
   }
 
   function thanks() {
-    $this->layout->view('pages/thanks');
+    $this->layout->view($this->template_path('thanks'));
+  }
+
+  function template_path($pagename) {
+    return sprintf('pages/%s%s', $this->db->dbprefix, $pagename);
   }
 }
